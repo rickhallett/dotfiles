@@ -1,5 +1,3 @@
-**MOVED TO [GITLAB](https://gitlab.com/matthewfranglen/dotfiles)**
-
 dot files
 =========
 
