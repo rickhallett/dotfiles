@@ -32,6 +32,7 @@
                                                                          \
         echo ${remote:-origin};                                          \
     }; f"
+    remote-branch = rev-parse --abbrev-ref --symbolic-full-name @{u}
 
     ff = flow feature
     ffs = flow feature start
