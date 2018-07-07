@@ -70,15 +70,50 @@ function join () {
     echo $*
 }
 
-# This will watch some files, executing a command when any changes are made
+# This will watch some files, returning when they change
 # This requires the package 'inotify-tools'
+# Example usage:
+#    while wait_until_change one two ...; do
+#        ...
+#    done
 
 local EVENTS="modify,attrib,close_write,move,create,delete"
 
 function wait_until_change () {
-    local watched_file="$1"
+    if ! all_paths_exist "${@}"
+    then
+        return 1
+    fi
 
-    inotifywait --recursive --event "${EVENTS}" ${~watched_file}
+    if has_folder "${@}"
+    then
+        inotifywait --recursive --event ${EVENTS} "${@}"
+    else
+        inotifywait --event ${EVENTS} "${@}"
+    fi
+}
+
+function all_paths_exist () {
+    for file in "${@}"
+    do
+        if [ ! -e "${file}" ]
+        then
+            echo "Path does not exist: ${file}" >&2
+            return 1
+        fi
+    done
+    return 0
+}
+
+function has_folder () {
+    for file in "${@}"
+    do
+        if [ -d "${file}" ]
+        then
+            return 0
+        fi
+    done
+    return 1
 }
 
 function watch_and_execute () {
