@@ -177,6 +177,7 @@ function s:ConfigurePlugins() abort
     call s:ConfigureJedi()
     call s:ConfigureMarkdown()
     call s:ConfigureNERDTree()
+    call s:ConfigurePythonAutoformat()
     call s:ConfigureRainbowParenthesis()
     call s:ConfigureSyntastic()
     call s:ConfigureUltiSnips()
@@ -269,7 +270,10 @@ function s:ConfigureNERDTree() abort
 endfunction
 
 function s:ConfigurePythonAutoformat() abort
-    autocmd BufNewFile,BufRead *.py :autocmd! BufWritePost * :!python_format %<CR>
+    augroup PythonFormatting
+        autocmd FileType python
+            \ autocmd! PythonFormatting BufWritePost <buffer> silent !format-python <afile>
+    augroup END
 endfunction
 
 function s:ConfigureRainbowParenthesis() abort
