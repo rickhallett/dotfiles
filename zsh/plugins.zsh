@@ -4,18 +4,18 @@ source ~/.antigen.zsh
 antigen-bundle Tarrasch/zsh-colors
 antigen-bundle Tarrasch/zsh-functional
 antigen-bundle bobthecow/git-flow-completion
-antigen-bundle matthewfranglen/docker-go
-antigen-bundle matthewfranglen/easy-ln
-antigen-bundle matthewfranglen/git-stashes
-antigen-bundle matthewfranglen/git-update
-antigen-bundle matthewfranglen/gitflow-avh --branch=master
-antigen-bundle matthewfranglen/memcached-cli
-antigen-bundle matthewfranglen/random
-antigen-bundle matthewfranglen/show-server-cert
-antigen-bundle matthewfranglen/spark
-antigen-bundle matthewfranglen/speedread
-antigen-bundle matthewfranglen/watch-me
-antigen-bundle matthewfranglen/window-to-gif
+antigen-bundle https://gitlab.com/matthewfranglen/docker-go
+antigen-bundle https://gitlab.com/matthewfranglen/easy-ln
+antigen-bundle https://gitlab.com/matthewfranglen/git-stashes
+antigen-bundle https://gitlab.com/matthewfranglen/git-update
+antigen-bundle https://gitlab.com/matthewfranglen/gitflow-avh --branch=master
+antigen-bundle https://gitlab.com/matthewfranglen/memcached-cli
+antigen-bundle https://gitlab.com/matthewfranglen/random
+antigen-bundle https://gitlab.com/matthewfranglen/show-server-cert
+antigen-bundle https://gitlab.com/matthewfranglen/spark
+antigen-bundle https://gitlab.com/matthewfranglen/speedread
+antigen-bundle https://gitlab.com/matthewfranglen/watch-me
+antigen-bundle https://gitlab.com/matthewfranglen/window-to-gif
 antigen-bundle supercrabtree/k
 antigen-bundle zsh-users/zsh-autosuggestions
 antigen-bundle zsh-users/zsh-history-substring-search
