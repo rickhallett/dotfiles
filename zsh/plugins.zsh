@@ -16,6 +16,7 @@ antigen-bundle https://gitlab.com/matthewfranglen/spark
 antigen-bundle https://gitlab.com/matthewfranglen/speedread
 antigen-bundle https://gitlab.com/matthewfranglen/watch-me
 antigen-bundle https://gitlab.com/matthewfranglen/window-to-gif
+antigen-bundle https://gitlab.com/matthewfranglen/format-python
 antigen-bundle supercrabtree/k
 antigen-bundle zsh-users/zsh-autosuggestions
 antigen-bundle zsh-users/zsh-history-substring-search

@@ -168,15 +168,6 @@ function docker_clean () {
     docker system prune -a
 }
 
-function python_format () {
-    if which yapf >/dev/null; then
-        yapf --parallel --in-place "${@}"
-    fi
-    if which isort >/dev/null; then
-        isort "${@}"
-    fi
-}
-
 function mgk () {
     if ! git rev-parse --show-toplevel >/dev/null 2>&1
     then
