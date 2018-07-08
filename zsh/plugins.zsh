@@ -6,6 +6,7 @@ antigen-bundle Tarrasch/zsh-functional
 antigen-bundle bobthecow/git-flow-completion
 antigen-bundle https://gitlab.com/matthewfranglen/docker-go
 antigen-bundle https://gitlab.com/matthewfranglen/easy-ln
+antigen-bundle https://gitlab.com/matthewfranglen/format-python
 antigen-bundle https://gitlab.com/matthewfranglen/git-stashes
 antigen-bundle https://gitlab.com/matthewfranglen/git-update
 antigen-bundle https://gitlab.com/matthewfranglen/gitflow-avh --branch=master
@@ -16,7 +17,6 @@ antigen-bundle https://gitlab.com/matthewfranglen/spark
 antigen-bundle https://gitlab.com/matthewfranglen/speedread
 antigen-bundle https://gitlab.com/matthewfranglen/watch-me
 antigen-bundle https://gitlab.com/matthewfranglen/window-to-gif
-antigen-bundle https://gitlab.com/matthewfranglen/format-python
 antigen-bundle supercrabtree/k
 antigen-bundle zsh-users/zsh-autosuggestions
 antigen-bundle zsh-users/zsh-history-substring-search
