@@ -9,14 +9,14 @@ antigen-bundle https://gitlab.com/matthewfranglen/easy-ln
 antigen-bundle https://gitlab.com/matthewfranglen/format-python
 antigen-bundle https://gitlab.com/matthewfranglen/git-stashes
 antigen-bundle https://gitlab.com/matthewfranglen/git-update
-antigen-bundle https://gitlab.com/matthewfranglen/gitflow-avh --branch=master
 antigen-bundle https://gitlab.com/matthewfranglen/memcached-cli
 antigen-bundle https://gitlab.com/matthewfranglen/random
 antigen-bundle https://gitlab.com/matthewfranglen/show-server-cert
 antigen-bundle https://gitlab.com/matthewfranglen/spark
-antigen-bundle https://gitlab.com/matthewfranglen/speedread
 antigen-bundle https://gitlab.com/matthewfranglen/watch-me
 antigen-bundle https://gitlab.com/matthewfranglen/window-to-gif
+antigen-bundle matthewfranglen/gitflow-avh --branch=master
+antigen-bundle matthewfranglen/speedread
 antigen-bundle supercrabtree/k
 antigen-bundle zsh-users/zsh-autosuggestions
 antigen-bundle zsh-users/zsh-history-substring-search
