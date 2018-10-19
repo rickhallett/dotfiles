@@ -46,7 +46,7 @@ if [ -n "${_DEBUG_PLUGINS}" ]; then
 
     function plugin::log {
         local current_time="$(date "+%s.%N")"
-        debug::log "plugins" "${PLUGIN_START_TIME}" "${PLUGIN_LAST_TIME}" "${current_time}" "${1}"
+        debug::log " - plugins" "${PLUGIN_START_TIME}" "${PLUGIN_LAST_TIME}" "${current_time}" "${1}"
         PLUGIN_LAST_TIME="${current_time}"
     }
 else
