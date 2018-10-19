@@ -1,26 +1,28 @@
 source ~/.antigen.zsh
 
 [ -e ~/.antigen-plugins.zsh ] && source ~/.antigen-plugins.zsh
-antigen-bundle Tarrasch/zsh-colors
-antigen-bundle Tarrasch/zsh-functional
-antigen-bundle bobthecow/git-flow-completion
-antigen-bundle https://gitlab.com/matthewfranglen/docker-go
-antigen-bundle https://gitlab.com/matthewfranglen/easy-ln
-antigen-bundle https://gitlab.com/matthewfranglen/format-python
-antigen-bundle https://gitlab.com/matthewfranglen/git-stashes
-antigen-bundle https://gitlab.com/matthewfranglen/git-update
-antigen-bundle https://gitlab.com/matthewfranglen/memcached-cli
-antigen-bundle https://gitlab.com/matthewfranglen/random
-antigen-bundle https://gitlab.com/matthewfranglen/show-server-cert
-antigen-bundle https://gitlab.com/matthewfranglen/spark
-antigen-bundle https://gitlab.com/matthewfranglen/watch-me
-antigen-bundle https://gitlab.com/matthewfranglen/window-to-gif
-antigen-bundle matthewfranglen/gitflow-avh --branch=master
-antigen-bundle matthewfranglen/speedread
-antigen-bundle supercrabtree/k
-antigen-bundle zsh-users/zsh-autosuggestions
-antigen-bundle zsh-users/zsh-history-substring-search
-antigen-bundle zsh-users/zsh-syntax-highlighting
+antigen_bundles+=(
+    Tarrasch/zsh-colors
+    Tarrasch/zsh-functional
+    bobthecow/git-flow-completion
+    https://gitlab.com/matthewfranglen/docker-go
+    https://gitlab.com/matthewfranglen/easy-ln
+    https://gitlab.com/matthewfranglen/format-python
+    https://gitlab.com/matthewfranglen/git-stashes
+    https://gitlab.com/matthewfranglen/git-update
+    https://gitlab.com/matthewfranglen/memcached-cli
+    https://gitlab.com/matthewfranglen/random
+    https://gitlab.com/matthewfranglen/show-server-cert
+    https://gitlab.com/matthewfranglen/spark
+    https://gitlab.com/matthewfranglen/watch-me
+    https://gitlab.com/matthewfranglen/window-to-gif
+    matthewfranglen/gitflow-avh --branch=master
+    matthewfranglen/speedread
+    supercrabtree/k
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-history-substring-search
+    zsh-users/zsh-syntax-highlighting
+)
 
 for bundle in $antigen_bundles
 do
