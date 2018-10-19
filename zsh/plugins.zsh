@@ -1,39 +1,68 @@
-source ~/.antigen.zsh
+_DEBUG_PLUGINS=
 
-[ -e ~/.antigen-plugins.zsh ] && source ~/.antigen-plugins.zsh
-antigen-bundle Tarrasch/zsh-colors
-antigen-bundle Tarrasch/zsh-functional
-antigen-bundle bobthecow/git-flow-completion
-antigen-bundle https://gitlab.com/matthewfranglen/docker-go
-antigen-bundle https://gitlab.com/matthewfranglen/easy-ln
-antigen-bundle https://gitlab.com/matthewfranglen/format-python
-antigen-bundle https://gitlab.com/matthewfranglen/git-stashes
-antigen-bundle https://gitlab.com/matthewfranglen/git-update
-antigen-bundle https://gitlab.com/matthewfranglen/memcached-cli
-antigen-bundle https://gitlab.com/matthewfranglen/random
-antigen-bundle https://gitlab.com/matthewfranglen/show-server-cert
-antigen-bundle https://gitlab.com/matthewfranglen/spark
-antigen-bundle https://gitlab.com/matthewfranglen/watch-me
-antigen-bundle https://gitlab.com/matthewfranglen/window-to-gif
-antigen-bundle matthewfranglen/gitflow-avh --branch=master
-antigen-bundle matthewfranglen/speedread
-antigen-bundle supercrabtree/k
-antigen-bundle zsh-users/zsh-autosuggestions
-antigen-bundle zsh-users/zsh-history-substring-search
-antigen-bundle zsh-users/zsh-syntax-highlighting
+function install_plugins() {
+    plugin::log "Starting..."
+    source ~/.antigen.zsh
 
-for bundle in $antigen_bundles
-do
-    antigen-bundle ${bundle}
-done
-unset antigen_bundles
+    [ -e ~/.antigen-plugins.zsh ] && source ~/.antigen-plugins.zsh
+    plugin::log "Registered external plugins"
 
-antigen-apply
+    antigen_bundles+=(
+        Tarrasch/zsh-colors
+        Tarrasch/zsh-functional
+        bobthecow/git-flow-completion
+        https://gitlab.com/matthewfranglen/docker-go
+        https://gitlab.com/matthewfranglen/format-python
+        https://gitlab.com/matthewfranglen/git-stashes
+        https://gitlab.com/matthewfranglen/random
+        "matthewfranglen/gitflow-avh --branch=master"
+        supercrabtree/k
+        zsh-users/zsh-autosuggestions
+        zsh-users/zsh-history-substring-search
+        zsh-users/zsh-syntax-highlighting
+    )
 
-# Set the autocomplete color for zsh-autocomplete.
-# Has to be done after loading.
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
+    for bundle in $antigen_bundles
+    do
+        antigen-bundle ${=bundle}
+    done
+    plugin::log "Registered bundles"
+    unset antigen_bundles
 
-source ~/.fzf.zsh
+    antigen-apply
+    plugin::log "Applied plugins"
+
+    # Set the autocomplete color for zsh-autocomplete.
+    # Has to be done after loading.
+    export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
+
+    source ~/.fzf.zsh
+    plugin::log "Sourced fzf"
+}
+
+if [ -n "${_DEBUG_PLUGINS}" ]; then
+    PLUGIN_START_TIME="$(date "+%s.%N")"
+    PLUGIN_LAST_TIME="${PLUGIN_START_TIME}"
+
+    function plugin::log {
+        local current_time="$(date "+%s.%N")"
+        debug::log " - plugins" "${PLUGIN_START_TIME}" "${PLUGIN_LAST_TIME}" "${current_time}" "${1}"
+        PLUGIN_LAST_TIME="${current_time}"
+    }
+else
+    function plugin::log {
+
+    }
+fi
+
+if ! which antigen >/dev/null; then
+    install_plugins
+fi
+
+unfunction install_plugins
+unfunction plugin::log
+unset PLUGIN_START_TIME
+unset PLUGIN_LAST_TIME
+unset _DEBUG_PLUGINS
 
 # vim: set ai et sw=4 syntax=zsh :
