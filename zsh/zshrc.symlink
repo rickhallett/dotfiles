@@ -1,15 +1,25 @@
 # Set this to a non blank string to enable launch profiling
 _DEBUG_STARTUP=
 
+function debug::log {
+    local prefix=$1
+    local start_time=$2
+    local last_time=$3
+    local current_time=$4
+    local message=$5
+
+    local start_delta=$((${current_time} - ${start_time}))
+    local last_delta=$((${current_time} - ${last_time}))
+    printf "%s [%fs Δ%f] - %s\n" "${prefix}" "${start_delta}" "${last_delta}" "${message}"
+}
+
 if [ -n "${_DEBUG_STARTUP}" ]; then
     START_TIME="$(date "+%s.%N")"
     LAST_TIME="${START_TIME}"
 
     function startup::log {
         local current_time="$(date "+%s.%N")"
-        local start_delta=$((${current_time} - ${START_TIME}))
-        local last_delta=$((${current_time} - ${LAST_TIME}))
-        printf "[%fs Δ%f] - %s\n" "${start_delta}" "${last_delta}" "${@}"
+        debug::log "zshrc" "${START_TIME}" "${LAST_TIME}" "${current_time}" "${1}"
         LAST_TIME="${current_time}"
     }
 else
@@ -155,3 +165,5 @@ unset config_files
 unset start_time
 unset last_time
 unset _DEBUG_STARTUP
+unfunction startup::log
+unfunction debug::log
