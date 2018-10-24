@@ -195,6 +195,13 @@ function title_restore () {
     unset DISABLE_AUTO_TITLE
 }
 
+function youtube {
+    if ! which youtube-dl >/dev/null; then
+        antigen bundle 'git@github.com:rg3/youtube-dl.git'
+    fi
+    each "youtube-dl --extract-audio --output \"%(title)s.%(ext)s\" \"\$1\"" "${@}"
+}
+
 
 # Don't dirty up the process tree on remote servers
 if [ -z $SSH_CONNECTION ]
