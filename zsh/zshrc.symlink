@@ -161,6 +161,9 @@ do
   startup::log "Sourced ${file}"
 done
 
+source ~/.fzf.zsh
+startup::log "Sourced fzf"
+
 unset config_files
 unset start_time
 unset last_time

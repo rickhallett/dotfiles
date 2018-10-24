@@ -35,9 +35,6 @@ function install_plugins() {
     # Set the autocomplete color for zsh-autocomplete.
     # Has to be done after loading.
     export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
-
-    source ~/.fzf.zsh
-    plugin::log "Sourced fzf"
 }
 
 if [ -n "${_DEBUG_PLUGINS}" ]; then
