@@ -125,9 +125,9 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/lervag/vimtex.git'
     Plug 'https://github.com/vim-scripts/bnf.vim.git'
 
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'https://github.com/Shougo/deoplete.nvim'
+    Plug 'https://github.com/roxma/nvim-yarp'
+    Plug 'https://github.com/roxma/vim-hug-neovim-rpc'
 
     Plug 'https://github.com/SirVer/ultisnips.git'
     Plug 'https://github.com/bronson/vim-visual-star-search'
