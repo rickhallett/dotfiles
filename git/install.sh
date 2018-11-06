@@ -19,7 +19,7 @@ install () {
 }
 
 install_hub () {
-    get_url_to_file "${HUB_URL}" "${HUB_DOWNLOAD}" && chmod 755 "${HUB_COMMAND}"
+    get_url_to_file "${HUB_URL}" "${HUB_DOWNLOAD}"
     local folder="$(mktemp -d)"
 
     (
@@ -28,6 +28,7 @@ install_hub () {
         mv */bin/hub "${HUB_COMMAND}"
     )
 
+    chmod 755 "${HUB_COMMAND}"
     rm -rf "${folder}"
 }
 

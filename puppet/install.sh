@@ -5,8 +5,8 @@ set -eu
 install () {
     if ! is_gem_command_available
     then
-        echo "Unable to install puppet environment... gem not found" >&2
-        return ${STATUS_ERROR}
+        echo "Will not install puppet-lint as gem is not available." >&3
+        return ${STATUS_SKIPPED}
     fi
 
     install_puppet_lint || return ${STATUS_ERROR}

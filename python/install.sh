@@ -31,7 +31,7 @@ install_pyenv () {
 }
 
 install_pipenv () {
-    PIP_REQUIRE_VIRTUALENV= pip install --user pipenv
+    PIP_REQUIRE_VIRTUALENV= pip install --user --no-warn-script-location pipenv
 }
 
 install
