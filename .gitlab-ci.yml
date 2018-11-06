@@ -10,4 +10,4 @@ build:
   stage: build
   script:
     - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker run --volume $PWD:/root/.dotfiles --rm -ti "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" -c true
+    - docker run --volume $PWD:/root/.dotfiles --rm "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" -c true
