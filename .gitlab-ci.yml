@@ -1,7 +1,13 @@
-before_script:
-  - docker info
+image: docker:latest
 
-build_image:
+services:
+  - docker:dind
+
+before_script:
+  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+build:
+  stage: build
   script:
-    - docker build -t dotfiles .
-    - docker run --volume $PWD:/root/.dotfiles --rm -ti dotfiles -c true
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker run --volume $PWD:/root/.dotfiles --rm -ti "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" -c true
