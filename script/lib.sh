@@ -47,6 +47,10 @@ make_local_bin () {
     then
         mkdir -p "${LOCAL_BIN_FOLDER}"
     fi
+    if ! echo ":${PATH}:" | fgrep -q ":${LOCAL_BIN_FOLDER}:"
+    then
+        export PATH="${LOCAL_BIN_FOLDER}:${PATH}"
+    fi
 }
 
 install_pip () {
