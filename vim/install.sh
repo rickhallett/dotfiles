@@ -16,7 +16,7 @@ install () {
 }
 
 install_yapf () {
-    PIP_REQUIRE_VIRTUALENV= pip install --user yapf
+    PIP_REQUIRE_VIRTUALENV= pip install --user --no-warn-script-location yapf
 }
 
 install
