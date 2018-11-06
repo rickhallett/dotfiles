@@ -47,17 +47,21 @@ make_local_bin () {
     then
         mkdir -p "${LOCAL_BIN_FOLDER}"
     fi
+    if ! echo ":${PATH}:" | fgrep -q ":${LOCAL_BIN_FOLDER}:"
+    then
+        export PATH="${LOCAL_BIN_FOLDER}:${PATH}"
+    fi
 }
 
 install_pip () {
-    local get_pip_file="/tmp/get-pip.py"
-
     PIP_COMMAND="`which pip`"
     if [ $? -eq 0 ]
     then
         return
     fi
 
+    make_local_bin
+    local get_pip_file="/tmp/get-pip.py"
     get_url_to_file "https://bootstrap.pypa.io/get-pip.py" "${get_pip_file}" || return 1
 
     python "${get_pip_file}" --user
