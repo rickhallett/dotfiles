@@ -7,4 +7,4 @@ set -euo pipefail
 /root/.dotfiles/script/bootstrap
 /root/.dotfiles/script/install
 
-exec zsh
+exec zsh "${@}"
