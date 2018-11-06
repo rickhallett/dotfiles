@@ -30,7 +30,7 @@ is_docker_compose_present () {
 }
 
 install_docker_compose () {
-    "${PIP_COMMAND}" install --user docker-compose
+    PIP_REQUIRE_VIRTUALENV= "${PIP_COMMAND}" install --user docker-compose
 }
 
 install

@@ -26,7 +26,7 @@ install () {
 }
 
 install_powerline () {
-    "${PIP_COMMAND}" install --user powerline-status
+    PIP_REQUIRE_VIRTUALENV= "${PIP_COMMAND}" install --user powerline-status
 }
 
 install
