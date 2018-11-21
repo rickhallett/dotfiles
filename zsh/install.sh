@@ -16,6 +16,7 @@ install () {
     install_noti      || return ${STATUS_ERROR}
     install_oh_my_zsh || return ${STATUS_ERROR}
     install_ripgrep   || return ${STATUS_ERROR}
+    install_sdkman    || return ${STATUS_ERROR}
 }
 
 is_git_command_available () {
@@ -141,6 +142,10 @@ install_ripgrep () {
         rm "${ripgrep_download}"
     )
     rm -rf "${ripgrep_folder}"
+}
+
+install_sdkman () {
+    curl -s "https://get.sdkman.io" | bash
 }
 
 install
