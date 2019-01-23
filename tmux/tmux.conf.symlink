@@ -5,28 +5,11 @@
 set -g prefix C-a
 bind-key a send-prefix
 
-# This first part makes the two commands for splitting the window:
-# ctrl-b | = split side by side
-# ctrl-b - = split up and down
-unbind %
-bind | split-window -c "#{pane_current_path}" -h
-bind - split-window -c "#{pane_current_path}" -v
-
 # new-window is bound to c by default, this just makes it open at the current path.
 bind c new-window -c "#{pane_current_path}"
 
 # C-a C-a for last window, from screen
 bind-key C-a last-window
-
-# use the vim motion keys to move between panes
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
-
-# copy buffer to clipboard with y, may put this on another key but this will do
-# for now.
-bind y run "tmux save-buffer - | xsel --clipboard --input"
 
 # use vim motion keys while in copy mode
 setw -g mode-keys vi
@@ -57,3 +40,19 @@ run-shell 'export PATH=$HOME/.local/bin:$PATH ; $HOME/.local/bin/powerline-confi
 
 set -g status-interval 2
 set -g status-right '#(~/.local/bin/powerline-render tmux right)'
+
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-pain-control'
+set -g @plugin 'tmux-plugins/tmux-sessionist'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+
+# Install tmux plugin manager if missing
+# See https://github.com/tmux-plugins/tpm/blob/master/docs/automatic_tpm_installation.md
+if "test ! -d ~/.tmux/plugins/tpm" \
+   "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'
