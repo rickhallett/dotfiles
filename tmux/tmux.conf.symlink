@@ -58,6 +58,9 @@ run-shell 'export PATH=$HOME/.local/bin:$PATH ; $HOME/.local/bin/powerline-confi
 set -g status-interval 2
 set -g status-right '#(~/.local/bin/powerline-render tmux right)'
 
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
 # Install tmux plugin manager if missing
 # See https://github.com/tmux-plugins/tpm/blob/master/docs/automatic_tpm_installation.md
 if "test ! -d ~/.tmux/plugins/tpm" \
