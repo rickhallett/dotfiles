@@ -57,3 +57,11 @@ run-shell 'export PATH=$HOME/.local/bin:$PATH ; $HOME/.local/bin/powerline-confi
 
 set -g status-interval 2
 set -g status-right '#(~/.local/bin/powerline-render tmux right)'
+
+# Install tmux plugin manager if missing
+# See https://github.com/tmux-plugins/tpm/blob/master/docs/automatic_tpm_installation.md
+if "test ! -d ~/.tmux/plugins/tpm" \
+   "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'
