@@ -60,6 +60,7 @@ set -g status-right '#(~/.local/bin/powerline-render tmux right)'
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-sensible'
 
 # Install tmux plugin manager if missing
 # See https://github.com/tmux-plugins/tpm/blob/master/docs/automatic_tpm_installation.md
