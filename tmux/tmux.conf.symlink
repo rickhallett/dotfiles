@@ -11,10 +11,6 @@ bind c new-window -c "#{pane_current_path}"
 # C-a C-a for last window, from screen
 bind-key C-a last-window
 
-# copy buffer to clipboard with y, may put this on another key but this will do
-# for now.
-bind y run "tmux save-buffer - | xsel --clipboard --input"
-
 # use vim motion keys while in copy mode
 setw -g mode-keys vi
 
@@ -50,6 +46,7 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-pain-control'
 set -g @plugin 'tmux-plugins/tmux-sessionist'
+set -g @plugin 'tmux-plugins/tmux-yank'
 
 # Install tmux plugin manager if missing
 # See https://github.com/tmux-plugins/tpm/blob/master/docs/automatic_tpm_installation.md
