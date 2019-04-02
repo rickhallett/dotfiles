@@ -278,6 +278,7 @@ function s:ConfigureNERDTree() abort
 endfunction
 
 function s:ConfigurePythonAutoformat() abort
+    autocmd FileType python setlocal autoread
     augroup PythonFormatting
         autocmd FileType python
             \ autocmd! PythonFormatting BufWritePost <buffer> silent !format-python <afile>
