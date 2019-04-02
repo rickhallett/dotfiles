@@ -308,7 +308,7 @@ function s:ConfigureYAPF() abort
 endfunction
 
 function s:ConfigurePowerline() abort
-    set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+    set rtp+=~/.local/lib/python*/site-packages/powerline/bindings/vim
 endfunction
 
 function s:LoadKeymaps() abort
