@@ -278,10 +278,15 @@ function s:ConfigureNERDTree() abort
 endfunction
 
 function s:ConfigurePythonAutoformat() abort
+    autocmd FileType python setlocal autoread
     augroup PythonFormatting
         autocmd FileType python
-            \ autocmd! PythonFormatting BufWritePost <buffer> silent !format-python <afile>
+            \ autocmd! PythonFormatting BufWritePost <buffer> call s:PythonAutoformat(expand('<afile>'))
     augroup END
+endfunction
+
+function s:PythonAutoformat(file) abort
+    silent let @_ = system('format-python ' . a:file)
 endfunction
 
 function s:ConfigureRainbowParenthesis() abort
