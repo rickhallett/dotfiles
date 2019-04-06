@@ -13,6 +13,9 @@
     ff = false
 [mergetool]
     keepBackup = false
+[pull]
+    ff = true
+    ff-only = true
 [alias]
     fap = fetch --all --prune
 
