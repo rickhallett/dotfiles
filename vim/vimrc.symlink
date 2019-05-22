@@ -282,15 +282,25 @@ function s:ConfigureNERDTree() abort
 endfunction
 
 function s:ConfigurePythonAutoformat() abort
-    autocmd FileType python setlocal autoread
-    augroup PythonFormatting
-        autocmd FileType python
-            \ autocmd! PythonFormatting BufWritePost <buffer> call s:PythonAutoformat(expand('<afile>'))
-    augroup END
+    silent let g:black_virtualenv = substitute(system('pipenv --venv'), '\n\+$', '', '')
+    silent let s:black_command = substitute(system('which black'), '\n\+$', '', '')
+    if g:black_virtualenv == ""
+        echom 'Skipping black formatting, unable to find virtualenv'
+    elseif s:black_command == "black not found"
+        echom 'Skipping black formatting, unable to find black command'
+    else
+        autocmd FileType python setlocal autoread
+        augroup PythonFormatting
+            autocmd FileType python
+                \ autocmd! PythonFormatting BufWritePre <buffer> call s:PythonAutoformat()
+        augroup END
+    endif
 endfunction
 
-function s:PythonAutoformat(file) abort
-    silent let @_ = system('format-python ' . a:file)
+function s:PythonAutoformat() abort
+    let cursor_pos = getpos('.')
+    execute ':%!black -q - 2>/dev/null'
+    call cursor(cursor_pos[1], cursor_pos[2])
 endfunction
 
 function s:ConfigureRainbowParenthesis() abort
