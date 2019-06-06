@@ -125,10 +125,6 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/lervag/vimtex.git'
     Plug 'https://github.com/vim-scripts/bnf.vim.git'
 
-    Plug 'https://github.com/Shougo/deoplete.nvim.git'
-    Plug 'https://github.com/roxma/nvim-yarp.git'
-    Plug 'https://github.com/roxma/vim-hug-neovim-rpc.git'
-
     Plug 'https://github.com/SirVer/ultisnips.git'
     Plug 'https://github.com/bronson/vim-visual-star-search.git'
     Plug 'https://github.com/davidhalter/jedi-vim.git'
@@ -152,7 +148,6 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/vim-scripts/AnsiEsc.vim.git'
     Plug 'https://github.com/vim-scripts/kwbdi.vim.git'
     Plug 'https://github.com/w0rp/ale.git'
-    Plug 'https://github.com/zchee/deoplete-jedi.git'
 
     Plug 'https://gitlab.com/matthewfranglen/vim-gf-python.git'
     Plug 'https://gitlab.com/matthewfranglen/vim-mf-defaults.git'
@@ -166,7 +161,6 @@ endfunction
 function s:ConfigurePlugins() abort
     call s:ConfigureAle()
     call s:ConfigureColors()
-    call s:ConfigureDeoplete()
     call s:ConfigureEasytags()
     call s:ConfigureEclim()
     call s:ConfigureFZF()
@@ -212,14 +206,6 @@ function s:ConfigureColors() abort
 
     let g:solarized_termcolors = 256
     colorscheme solarized
-endfunction
-
-function s:ConfigureDeoplete() abort
-    if has("python3")
-        call deoplete#enable()
-    else
-        echo "Cannot enable deoplete, need python3 support"
-    endif
 endfunction
 
 function s:ConfigureEasytags() abort
