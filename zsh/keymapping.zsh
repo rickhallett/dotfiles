@@ -1,6 +1,3 @@
-# VI Mode
-bindkey -v
-
 # Disable ctrl-s ctrl-q (suspend, resume. frequently really really annoying!)
 # http://geekanova.blogspot.co.uk/2012/11/ctrl-s-freezes-terminal.html
 stty -ixon -ixoff
