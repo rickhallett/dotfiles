@@ -2,34 +2,12 @@ _DEBUG_PLUGINS=
 
 function install_plugins() {
     plugin::log "Starting..."
-    source ~/.antigen.zsh
+    export ANTIBODY_HOME="${HOME}/.antibody"
 
-    [ -e ~/.antigen-plugins.zsh ] && source ~/.antigen-plugins.zsh
-    plugin::log "Registered external plugins"
-
-    antigen_bundles+=(
-        Tarrasch/zsh-colors
-        Tarrasch/zsh-functional
-        bobthecow/git-flow-completion
-        https://gitlab.com/matthewfranglen/docker-go
-        https://gitlab.com/matthewfranglen/format-python
-        https://gitlab.com/matthewfranglen/git-stashes
-        https://gitlab.com/matthewfranglen/random
-        "matthewfranglen/gitflow-avh --branch=master"
-        supercrabtree/k
-        zsh-users/zsh-autosuggestions
-        zsh-users/zsh-history-substring-search
-        zsh-users/zsh-syntax-highlighting
-    )
-
-    for bundle in $antigen_bundles
-    do
-        antigen-bundle ${=bundle}
-    done
-    plugin::log "Registered bundles"
-    unset antigen_bundles
-
-    antigen-apply
+    if [ ! -e ~/.zsh-plugins.sh ] || [ ~/.zsh-plugins(:A) -nt ~/.zsh-plugins.sh ]; then
+        antibody bundle < ~/.zsh-plugins > ~/.zsh-plugins.sh
+    fi
+    source ~/.zsh-plugins.sh
     plugin::log "Applied plugins"
 
     # Set the autocomplete color for zsh-autocomplete.
@@ -55,7 +33,7 @@ else
     }
 fi
 
-if ! which antigen >/dev/null; then
+if ! which _antibody >/dev/null; then
     install_plugins
 fi
 

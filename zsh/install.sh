@@ -9,7 +9,7 @@ install () {
         return ${STATUS_ERROR}
     fi
 
-    install_antigen   || return ${STATUS_ERROR}
+    install_antibody  || return ${STATUS_ERROR}
     install_fasd      || return ${STATUS_ERROR}
     install_fd        || return ${STATUS_ERROR}
     install_fzf       || return ${STATUS_ERROR}
@@ -23,15 +23,11 @@ is_git_command_available () {
     which git >/dev/null
 }
 
-install_antigen () {
-    local antigen_script_file="${HOME}/.antigen.zsh"
-
-    if [ -e "${antigen_script_file}" ]
-    then
-        return
+install_antibody () {
+    if [ ! -e ~/.local/bin ]; then
+        mkdir -p ~/.local/bin
     fi
-
-    get_url_to_file "https://git.io/antigen" "${antigen_script_file}" || return 1
+    curl -sfL git.io/antibody | sh -s - -b "${HOME}/.local/bin"
 }
 
 install_fasd () {
