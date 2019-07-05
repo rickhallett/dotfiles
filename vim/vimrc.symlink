@@ -11,7 +11,6 @@ function s:Main() abort
     call s:LoadPlugins()
     call s:LoadKeymaps()
     call s:LoadTags()
-    call s:LoadPath()
 
     autocmd! VimEnter * :call <SID>LoadCustomSettings()
 endfunction
@@ -129,12 +128,10 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/bronson/vim-visual-star-search.git'
     Plug 'https://github.com/davidhalter/jedi-vim.git'
     Plug 'https://github.com/godlygeek/tabular.git'
-    Plug 'https://github.com/google/yapf.git', { 'rtp': 'plugins/vim', 'for': 'python' }
     Plug 'https://github.com/honza/vim-snippets.git'
     Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle.git'
     Plug 'https://github.com/junegunn/fzf.git', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
     Plug 'https://github.com/junegunn/tmux-complete.vim.git'
-    Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
     Plug 'https://github.com/majutsushi/tagbar.git'
     Plug 'https://github.com/mileszs/ack.vim.git'
     Plug 'https://github.com/scrooloose/nerdtree.git'
@@ -168,11 +165,8 @@ function s:ConfigurePlugins() abort
     call s:ConfigureJedi()
     call s:ConfigureMarkdown()
     call s:ConfigureNERDTree()
-    call s:ConfigurePythonAutoformat()
-    call s:ConfigureRainbowParenthesis()
     call s:ConfigureSyntastic()
     call s:ConfigureUltiSnips()
-    call s:ConfigureYAPF()
 
     if s:CanUsePython()
         call s:ConfigurePowerline()
@@ -215,26 +209,8 @@ function s:ConfigureEasytags() abort
 endfunction
 
 function s:ConfigureEclim() abort
-    autocmd FileType java call s:ConfigureEclimJavaBindings()
     let g:EclimJavascriptLintEnabled = 0
     let g:EclimJavaSearchSingleResult = 'tabnew'
-endfunction
-
-function s:ConfigureEclimJavaBindings() abort
-    nnoremap <silent> <buffer> <leader>jc :Checkstyle<CR>
-    nnoremap <silent> <buffer> <leader>jC :JavaCorrect<CR>
-    nnoremap <silent> <buffer> <leader>jd :JavaDocSearch -x declarations<CR>
-    nnoremap <silent> <buffer> <leader>ji :JavaImportOrganize<CR>
-    nnoremap <silent> <buffer> <leader>jm :JavaImpl<CR>
-    nnoremap <silent> <buffer> <leader>jt :JUnit %<CR>
-    nnoremap <silent> <buffer> <leader>jTM :JUnitImpl<CR>
-    nnoremap <silent> <buffer> <leader>jTT :JUnitFindTest<CR>
-
-    nnoremap <silent> <buffer> <cr> :JavaSearchContext<CR>
-
-    " Add static import with <leader>jI
-    " based on adding a regular import with <leader>ji
-    nnoremap <silent> <buffer> <leader>jI :AddStaticImport<CR>
 endfunction
 
 function s:ConfigureFZF() abort
@@ -247,9 +223,7 @@ function s:ConfigureJedi() abort
 endfunction
 
 function s:ConfigureJavaOmniComplete() abort
-    autocmd FileType java let g:EclimCompletionMethod = 'omnifunc'
-    autocmd FileType java if &completefunc != '' | let &omnifunc=&completefunc | endif
-    autocmd FileType java nnoremap <silent> <buffer> <CR> :JavaSearchContext<CR>
+    let g:EclimCompletionMethod = 'omnifunc'
 endfunction
 
 function s:ConfigureMarkdown() abort
@@ -267,34 +241,10 @@ function s:ConfigureNERDTree() abort
     let g:NERDTreeMapOpenInTab='<ENTER>'
 endfunction
 
-function s:ConfigurePythonAutoformat() abort
-    silent let g:black_virtualenv = substitute(system('pipenv --venv'), '\n\+$', '', '')
-    silent let s:black_command = substitute(system('which black'), '\n\+$', '', '')
-    if g:black_virtualenv == ""
-        echom 'Skipping black formatting, unable to find virtualenv'
-    elseif s:black_command == "black not found"
-        echom 'Skipping black formatting, unable to find black command'
-    else
-        autocmd FileType python setlocal autoread
-        augroup PythonFormatting
-            autocmd FileType python
-                \ autocmd! PythonFormatting BufWritePre <buffer> call s:PythonAutoformat()
-        augroup END
-    endif
-endfunction
-
 function s:PythonAutoformat() abort
     let cursor_pos = getpos('.')
     execute ':%!black -q - 2>/dev/null'
     call cursor(cursor_pos[1], cursor_pos[2])
-endfunction
-
-function s:ConfigureRainbowParenthesis() abort
-    " Load rainbow parens for clojure files
-    autocmd FileType clojure RainbowParenthesesToggle
-    autocmd Syntax clojure RainbowParenthesesLoadRound
-    autocmd Syntax clojure RainbowParenthesesLoadSquare
-    autocmd Syntax clojure RainbowParenthesesLoadBraces
 endfunction
 
 function s:ConfigureSyntastic() abort
@@ -308,17 +258,11 @@ function s:ConfigureUltiSnips() abort
     let g:UltiSnipsJumpBackwardTrigger="<C-P>"
 endfunction
 
-function s:ConfigureYAPF() abort
-    autocmd FileType python map <leader>f :call yapf#YAPF()<CR>
-endfunction
-
 function s:ConfigurePowerline() abort
     set rtp+=~/.local/lib/python*/site-packages/powerline/bindings/vim
 endfunction
 
 function s:LoadKeymaps() abort
-    autocmd FileType perl :call <SID>LoadPerlKeymaps()
-
     " Map leader to space.
     let g:mapleader = "\<Space>"
 
@@ -344,11 +288,6 @@ function s:LoadKeymaps() abort
     nmap <F8> :TagbarToggle<CR>
 endfunction
 
-function s:LoadPerlKeymaps() abort
-    nmap <leader>f :% ! perltidy<CR>
-    iabbrev _dump Data::Dumper->new( [ ] )->Dump;
-endfunction
-
 function s:ShowGitDiff() abort
     execute g:ExecuteInShell('git diff')
     set syntax=diff
@@ -362,10 +301,6 @@ endfunction
 
 function s:LoadTags() abort
     set tags=$HOME/.vimtags_jdk,./tags
-endfunction
-
-function s:LoadPath() abort
-    autocmd FileType java setlocal path=,,.,**/src/**/java
 endfunction
 
 call s:Main()
