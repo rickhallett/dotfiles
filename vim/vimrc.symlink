@@ -169,7 +169,6 @@ function s:ConfigurePlugins() abort
     call s:ConfigureMarkdown()
     call s:ConfigureNERDTree()
     call s:ConfigurePythonAutoformat()
-    call s:ConfigureRainbowParenthesis()
     call s:ConfigureSyntastic()
     call s:ConfigureUltiSnips()
     call s:ConfigureYAPF()
@@ -287,14 +286,6 @@ function s:PythonAutoformat() abort
     let cursor_pos = getpos('.')
     execute ':%!black -q - 2>/dev/null'
     call cursor(cursor_pos[1], cursor_pos[2])
-endfunction
-
-function s:ConfigureRainbowParenthesis() abort
-    " Load rainbow parens for clojure files
-    autocmd FileType clojure RainbowParenthesesToggle
-    autocmd Syntax clojure RainbowParenthesesLoadRound
-    autocmd Syntax clojure RainbowParenthesesLoadSquare
-    autocmd Syntax clojure RainbowParenthesesLoadBraces
 endfunction
 
 function s:ConfigureSyntastic() abort
