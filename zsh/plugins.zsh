@@ -4,8 +4,13 @@ function install_plugins() {
     plugin::log "Starting..."
     export ANTIBODY_HOME="${HOME}/.antibody"
 
-    if [ ! -e ~/.zsh-plugins.sh ] || [ ~/.zsh-plugins(:A) -nt ~/.zsh-plugins.sh ]; then
-        antibody bundle < ~/.zsh-plugins > ~/.zsh-plugins.sh
+    if [ ! -e ~/.zsh-plugins.sh ] || [ ~/.zsh-plugins(:A) -nt ~/.zsh-plugins.sh ] || [ ~/.local-plugins -nt ~/.zsh-plugins.sh ]; then
+        (
+            antibody bundle < ~/.zsh-plugins
+            if [ -e ~/.local-plugins ]; then
+                antibody bundle < ~/.local-plugins
+            fi
+        ) > ~/.zsh-plugins.sh
     fi
     source ~/.zsh-plugins.sh
     plugin::log "Applied plugins"
