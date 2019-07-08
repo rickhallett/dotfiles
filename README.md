@@ -17,6 +17,12 @@ This requires pip3 and neovim to be installed:
     sudo apt-get install python3-pip
     PIP_REQUIRE_VIRTUALENV= pip3 install neovim --user
 
+Per Host Customization
+----------------------
+
+You can add host conditional changes with the `~/.localrc` file which will be sourced at the end.
+You can add host specific plugins to `~/.local-plugins`.
+
 Testing
 -------
 
