@@ -196,9 +196,6 @@ function title_restore () {
 }
 
 function youtube {
-    if ! which youtube-dl >/dev/null; then
-        antigen bundle 'git@github.com:rg3/youtube-dl.git'
-    fi
     each "youtube-dl --extract-audio --output \"%(title)s.%(ext)s\" \"\$1\"" "${@}"
 }
 
