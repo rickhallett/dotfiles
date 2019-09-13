@@ -1,6 +1,8 @@
 dot files
 =========
 
+[![pipeline status](https://gitlab.com/matthewfranglen/dotfiles/badges/master/pipeline.svg)](https://gitlab.com/matthewfranglen/dotfiles/commits/master)
+
 This is my current set of dotfiles. It has been rewritten to be based heavily on https://github.com/holman/dotfiles
 
 
