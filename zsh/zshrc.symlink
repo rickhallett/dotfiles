@@ -1,3 +1,5 @@
+source /etc/environment
+
 # Set this to a non blank string to enable launch profiling
 _DEBUG_STARTUP=
 
