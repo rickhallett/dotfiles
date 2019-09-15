@@ -200,6 +200,8 @@ prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
     prompt_segment blue white "\Uf097 `basename $virtualenv_path`"
+  elif [[ -n $CONDA_DEFAULT_ENV && "${CONDA_DEFAULT_ENV}" != "base" ]]; then
+    prompt_segment blue white "\Uf097 ${CONDA_DEFAULT_ENV}"
   fi
 }
 
