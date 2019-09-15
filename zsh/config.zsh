@@ -27,11 +27,6 @@ export FZF_DEFAULT_OPTS="--extended-exact"
 # This respects .gitignore
 export FZF_DEFAULT_COMMAND='fd --type f'
 
-# Disable python virtualenv prompt modifications
-# They are handled by the prompt.zsh config
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-
 # This allows exclusions and the like in the pattern expansion
 setopt EXTENDED_GLOB
 
