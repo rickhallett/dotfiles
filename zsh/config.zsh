@@ -50,10 +50,4 @@ setopt IGNORE_EOF
 # like: git comm-[tab]
 setopt COMPLETE_ALIASES
 
-# Pipenv completion
-_pipenv() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIPENV_COMPLETE=complete-zsh  pipenv)
-}
-compdef _pipenv pipenv
-
 # vim: set ai et sw=4 syntax=zsh :
