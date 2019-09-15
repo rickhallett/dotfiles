@@ -27,11 +27,6 @@ export FZF_DEFAULT_OPTS="--extended-exact"
 # This respects .gitignore
 export FZF_DEFAULT_COMMAND='fd --type f'
 
-# Disable python virtualenv prompt modifications
-# They are handled by the prompt.zsh config
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-
 # This allows exclusions and the like in the pattern expansion
 setopt EXTENDED_GLOB
 
@@ -49,11 +44,5 @@ setopt IGNORE_EOF
 # don't expand aliases _before_ completion has finished
 # like: git comm-[tab]
 setopt COMPLETE_ALIASES
-
-# Pipenv completion
-_pipenv() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIPENV_COMPLETE=complete-zsh  pipenv)
-}
-compdef _pipenv pipenv
 
 # vim: set ai et sw=4 syntax=zsh :
