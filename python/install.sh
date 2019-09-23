@@ -12,9 +12,12 @@ install () {
         return ${STATUS_ERROR}
     fi
 
-    install_pip    || return ${STATUS_ERROR}
-    install_pyenv  || return ${STATUS_ERROR}
-    install_pipenv || return ${STATUS_ERROR}
+    install_pip          || return ${STATUS_ERROR}
+    install_pyenv        || return ${STATUS_ERROR}
+    install_pipx         || return ${STATUS_ERROR}
+    install_pipenv       || return ${STATUS_ERROR}
+    install_poetry       || return ${STATUS_ERROR}
+    install_cookiecutter || return ${STATUS_ERROR}
 
     return ${STATUS_OK}
 }
@@ -30,8 +33,20 @@ install_pyenv () {
     fi
 }
 
+install_pipx () {
+    PIP_REQUIRE_VIRTUALENV= pip install --user pipx
+}
+
 install_pipenv () {
-    PIP_REQUIRE_VIRTUALENV= pip install --user pipenv
+    pipx install pipenv
+}
+
+install_poetry () {
+    pipx install poetry
+}
+
+install_cookiecutter () {
+    pipx install cookiecutter
 }
 
 install
