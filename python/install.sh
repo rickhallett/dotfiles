@@ -16,6 +16,7 @@ install () {
     install_pyenv  || return ${STATUS_ERROR}
     install_pipenv || return ${STATUS_ERROR}
     install_pipx   || return ${STATUS_ERROR}
+    install_poetry || return ${STATUS_ERROR}
 
     return ${STATUS_OK}
 }
@@ -37,6 +38,10 @@ install_pipenv () {
 
 install_pipx () {
     PIP_REQUIRE_VIRTUALENV= pip install --user pipx
+}
+
+install_poetry () {
+    pipx install poetry
 }
 
 install
