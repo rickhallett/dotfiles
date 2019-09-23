@@ -14,8 +14,8 @@ install () {
 
     install_pip    || return ${STATUS_ERROR}
     install_pyenv  || return ${STATUS_ERROR}
-    install_pipenv || return ${STATUS_ERROR}
     install_pipx   || return ${STATUS_ERROR}
+    install_pipenv || return ${STATUS_ERROR}
     install_poetry || return ${STATUS_ERROR}
 
     return ${STATUS_OK}
@@ -32,12 +32,12 @@ install_pyenv () {
     fi
 }
 
-install_pipenv () {
-    PIP_REQUIRE_VIRTUALENV= pip install --user pipenv
-}
-
 install_pipx () {
     PIP_REQUIRE_VIRTUALENV= pip install --user pipx
+}
+
+install_pipenv () {
+    pipx install pipenv
 }
 
 install_poetry () {
