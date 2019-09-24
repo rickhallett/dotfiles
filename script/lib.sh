@@ -4,7 +4,7 @@
 #
 # Thus this uses the convention that the sourcing script is in a subdirectory
 # of the dotfiles directory and that ${0} contains the relative path to that
-# script. The DOTFILES_FOLDER path will be wrong if this is not true.
+# script. The DOTFILES path will be wrong if this is not true.
 
 STATUS_OK=0
 STATUS_SKIPPED=1
@@ -12,7 +12,7 @@ STATUS_ERROR=2
 
 LOCAL_BIN_FOLDER="${HOME}/.local/bin"
 DOTFILES_FOLDER="`dirname \`dirname \\\`readlink -f $0\\\`\``"
-LOGS_FOLDER="${DOTFILES_FOLDER}/logs"
+LOGS_FOLDER="${DOTFILES}/logs"
 
 STDOUT_LOGFILE="${LOGS_FOLDER}/install.log"
 STDERR_LOGFILE="${LOGS_FOLDER}/error.log"

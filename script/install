@@ -5,7 +5,7 @@
 set -e
 
 . "`dirname \`dirname \\\`readlink -f $0\\\`\``/script/lib.sh"
-cd "${DOTFILES_FOLDER}"
+cd "${DOTFILES}"
 
 declare -a SUCCESSFUL_INSTALLATIONS
 declare -a SKIPPED_INSTALLATIONS
