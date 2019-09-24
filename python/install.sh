@@ -33,10 +33,6 @@ install_pyenv () {
     fi
 }
 
-install_pipx () {
-    PIP_REQUIRE_VIRTUALENV= pip install --user pipx
-}
-
 install_pipenv () {
     pipx install pipenv
 }
