@@ -1,5 +1,9 @@
 source /etc/environment
 
+# Disable compaudit when running as root
+# See https://github.com/robbyrussell/oh-my-zsh/issues/6939#issuecomment-399237537
+[[ $UID = 0 ]] && ZSH_DISABLE_COMPFIX=true
+
 # Set this to a non blank string to enable launch profiling
 _DEBUG_STARTUP=
 
