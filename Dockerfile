@@ -3,6 +3,10 @@ FROM python
 RUN apt-get update
 RUN apt-get install -y zsh git curl zip
 
-COPY ./script/test /test
+RUN useradd --create-home --shell /bin/bash user
+COPY ./script/test /home/user/test
 
-ENTRYPOINT ["/test"]
+USER user
+WORDIR /home/user
+
+ENTRYPOINT ["/home/user/test"]
