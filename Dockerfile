@@ -7,6 +7,6 @@ RUN useradd --create-home --shell /bin/bash user
 COPY ./script/test /home/user/test
 
 USER user
-WORDIR /home/user
+WORKDIR /home/user
 
 ENTRYPOINT ["/home/user/test"]
