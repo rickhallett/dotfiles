@@ -20,13 +20,14 @@ install () {
     fi
 
     install_pip       || return ${STATUS_ERROR}
+    install_pipx      || return ${STATUS_ERROR}
     install_powerline || return ${STATUS_ERROR}
 
     return ${STATUS_OK}
 }
 
 install_powerline () {
-    PIP_REQUIRE_VIRTUALENV= "${PIP_COMMAND}" install --user powerline-status
+    pipx install powerline-status
 }
 
 install

@@ -83,6 +83,10 @@ install_pip () {
     return $status
 }
 
+install_pipx () {
+    PIP_REQUIRE_VIRTUALENV= pip install --user pipx
+}
+
 is_gem_command_available () {
     which gem >/dev/null
 }
