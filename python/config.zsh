@@ -1,12 +1,6 @@
 export PIP_REQUIRE_VIRTUALENV=true
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-# Pipenv completion
-_pipenv() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIPENV_COMPLETE=complete-zsh  pipenv)
-}
-compdef _pipenv pipenv
-
 function python::setup_conda {
     # from conda init
     __conda_setup="$("${CONDA_HOME}/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"

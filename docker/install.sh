@@ -16,6 +16,7 @@ install () {
 
     make_local_bin         || return ${STATUS_ERROR}
     install_pip            || return ${STATUS_ERROR}
+    install_pipx           || return ${STATUS_ERROR}
     install_docker_compose || return ${STATUS_ERROR}
 
     return ${STATUS_OK}
@@ -30,7 +31,7 @@ is_docker_compose_present () {
 }
 
 install_docker_compose () {
-    PIP_REQUIRE_VIRTUALENV= "${PIP_COMMAND}" install --user docker-compose
+    pipx install docker-compose
 }
 
 install

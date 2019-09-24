@@ -24,9 +24,7 @@ is_git_command_available () {
 }
 
 install_antibody () {
-    if [ ! -e ~/.local/bin ]; then
-        mkdir -p ~/.local/bin
-    fi
+    make_local_bin
     curl -sfL git.io/antibody | sh -s - -b "${HOME}/.local/bin"
 }
 

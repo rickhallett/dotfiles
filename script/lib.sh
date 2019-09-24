@@ -4,19 +4,19 @@
 #
 # Thus this uses the convention that the sourcing script is in a subdirectory
 # of the dotfiles directory and that ${0} contains the relative path to that
-# script. The DOTFILES_FOLDER path will be wrong if this is not true.
+# script. The DOTFILES path will be wrong if this is not true.
 
-STATUS_OK=0
-STATUS_SKIPPED=1
-STATUS_ERROR=2
+readonly STATUS_OK=0
+readonly STATUS_SKIPPED=1
+readonly STATUS_ERROR=2
 
-LOCAL_BIN_FOLDER="${HOME}/.local/bin"
-DOTFILES_FOLDER="`dirname \`dirname \\\`readlink -f $0\\\`\``"
-LOGS_FOLDER="${DOTFILES_FOLDER}/logs"
+readonly LOCAL_BIN_FOLDER="${HOME}/.local/bin"
+readonly DOTFILES="`dirname \`dirname \\\`readlink -f $0\\\`\``"
+readonly LOGS_FOLDER="${DOTFILES}/logs"
 
-STDOUT_LOGFILE="${LOGS_FOLDER}/install.log"
-STDERR_LOGFILE="${LOGS_FOLDER}/error.log"
-SKIP_LOGFILE="${LOGS_FOLDER}/skip.log"
+readonly STDOUT_LOGFILE="${LOGS_FOLDER}/install.log"
+readonly STDERR_LOGFILE="${LOGS_FOLDER}/error.log"
+readonly SKIP_LOGFILE="${LOGS_FOLDER}/skip.log"
 
 info () {
   printf "  [ \033[00;34m..\033[0m ] $1\n"
@@ -84,6 +84,7 @@ install_pip () {
 }
 
 install_pipx () {
+    make_local_bin
     PIP_REQUIRE_VIRTUALENV= pip install --user pipx
 }
 
@@ -110,4 +111,3 @@ get_url_to_file () {
         return 1
     fi
 }
-
