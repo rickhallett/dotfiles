@@ -84,6 +84,7 @@ install_pip () {
 }
 
 install_pipx () {
+    make_local_bin
     PIP_REQUIRE_VIRTUALENV= pip install --user pipx
 }
 
