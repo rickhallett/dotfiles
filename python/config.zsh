@@ -19,12 +19,10 @@ function python::setup_conda {
 if [[ -z "${CONDA_HOME}" ]]; then
     if [[ -e "${HOME}/Programming/Python/anaconda3" ]]; then
         export CONDA_HOME="${HOME}/Programming/Python/anaconda3"
-        export PATH="${CONDA_HOME}/bin:${PATH}"
         python::setup_conda
     fi
 # https://unix.stackexchange.com/questions/411304/how-do-i-check-whether-a-zsh-array-contains-a-given-value
 elif [[ ${path[(ie)${CONDA_HOME}/bin]} -gt ${#path} ]]; then
-    export PATH="${CONDA_HOME}/bin:${PATH}"
     python::setup_conda
 fi
 
