@@ -134,6 +134,7 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/junegunn/tmux-complete.vim.git'
     Plug 'https://github.com/majutsushi/tagbar.git'
     Plug 'https://github.com/mileszs/ack.vim.git'
+    Plug 'https://github.com/racer-rust/vim-racer.git'
     Plug 'https://github.com/scrooloose/nerdtree.git'
     Plug 'https://github.com/sjl/gundo.vim.git'
     Plug 'https://github.com/tpope/vim-commentary.git'
@@ -165,6 +166,7 @@ function s:ConfigurePlugins() abort
     call s:ConfigureJedi()
     call s:ConfigureMarkdown()
     call s:ConfigureNERDTree()
+    call s:ConfigureRustOmniComplete()
     call s:ConfigureSyntastic()
     call s:ConfigureUltiSnips()
 
@@ -246,6 +248,13 @@ function s:PythonAutoformat() abort
     let cursor_pos = getpos('.')
     execute ':%!black -q - 2>/dev/null'
     call cursor(cursor_pos[1], cursor_pos[2])
+endfunction
+
+function s:ConfigureRustOmniComplete() abort
+    let g:racer_experimental_completer = 1
+    let g:racer_insert_paren = 1
+    au FileType rust nmap <leader>d <Plug>(rust-def)
+    au FileType rust nmap <leader>gd <Plug>(rust-doc)
 endfunction
 
 function s:ConfigureSyntastic() abort
