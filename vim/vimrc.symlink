@@ -124,7 +124,6 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/lervag/vimtex.git'
     Plug 'https://github.com/vim-scripts/bnf.vim.git'
 
-    Plug 'https://github.com/SirVer/ultisnips.git'
     Plug 'https://github.com/bronson/vim-visual-star-search.git'
     Plug 'https://github.com/davidhalter/jedi-vim.git'
     Plug 'https://github.com/godlygeek/tabular.git'
@@ -168,7 +167,6 @@ function s:ConfigurePlugins() abort
     call s:ConfigureNERDTree()
     call s:ConfigureRustOmniComplete()
     call s:ConfigureSyntastic()
-    call s:ConfigureUltiSnips()
 
     if s:CanUsePython()
         call s:ConfigurePowerline()
@@ -260,12 +258,6 @@ endfunction
 function s:ConfigureSyntastic() abort
     let g:syntastic_python_checkers = ['python', 'pyflakes', 'pep8', 'pylint']
     let g:syntastic_javascript_checkers = ['eslint']
-endfunction
-
-function s:ConfigureUltiSnips() abort
-    let g:UltiSnipsExpandTrigger="<C-E>"
-    let g:UltiSnipsJumpForwardTrigger="<C-N>"
-    let g:UltiSnipsJumpBackwardTrigger="<C-P>"
 endfunction
 
 function s:ConfigurePowerline() abort
