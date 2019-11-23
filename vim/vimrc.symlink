@@ -127,7 +127,6 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/bronson/vim-visual-star-search.git'
     Plug 'https://github.com/davidhalter/jedi-vim.git'
     Plug 'https://github.com/godlygeek/tabular.git'
-    Plug 'https://github.com/honza/vim-snippets.git'
     Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle.git'
     Plug 'https://github.com/junegunn/fzf.git', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
     Plug 'https://github.com/junegunn/tmux-complete.vim.git'
@@ -146,12 +145,8 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/vim-scripts/kwbdi.vim.git'
     Plug 'https://github.com/w0rp/ale.git'
 
-    Plug 'https://gitlab.com/matthewfranglen/vim-gf-python.git'
     Plug 'https://gitlab.com/matthewfranglen/vim-mf-defaults.git'
     Plug 'https://github.com/matthewfranglen/vim-nerdtree-direnter.git'
-    Plug 'https://gitlab.com/matthewfranglen/vim-repl.git'
-    Plug 'https://gitlab.com/matthewfranglen/vim-scheme.git'
-    Plug 'https://gitlab.com/matthewfranglen/vim-shell.git'
     Plug 'https://gitlab.com/matthewfranglen/vim-static-import.git'
 endfunction
 
