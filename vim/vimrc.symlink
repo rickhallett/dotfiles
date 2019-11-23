@@ -181,10 +181,6 @@ endfunction
 function s:ConfigureAle() abort
     let g:ale_linters = { 'python': ['pylint', 'mypy'], 'java': [] }
     let g:ale_lint_on_text_changed = 'never'
-    let g:ale_pattern_options = {
-       \    '^' . expand('~') . '/.local': {'ale_enabled': 0},
-       \    '^' . expand('.'): {'ale_enabled': 1}
-       \}
 endfunction
 
 function s:ConfigureColors() abort
