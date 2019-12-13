@@ -160,7 +160,6 @@ function s:ConfigurePlugins() abort
     call s:ConfigureJedi()
     call s:ConfigureMarkdown()
     call s:ConfigureNERDTree()
-    call s:ConfigureRustOmniComplete()
     call s:ConfigureSyntastic()
 
     if s:CanUsePython()
@@ -234,13 +233,6 @@ function s:ConfigureNERDTree() abort
 
     " http://stackoverflow.com/questions/8680752/how-to-open-a-file-in-new-tab-by-default-in-nerdtree
     let g:NERDTreeMapOpenInTab='<ENTER>'
-endfunction
-
-function s:ConfigureRustOmniComplete() abort
-    let g:racer_experimental_completer = 1
-    let g:racer_insert_paren = 1
-    au FileType rust nmap <leader>d <Plug>(rust-def)
-    au FileType rust nmap <leader>gd <Plug>(rust-doc)
 endfunction
 
 function s:ConfigureSyntastic() abort
