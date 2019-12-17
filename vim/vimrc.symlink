@@ -141,7 +141,7 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/tpope/vim-sensible.git'
     Plug 'https://github.com/tpope/vim-surround.git'
     Plug 'https://github.com/tpope/vim-unimpaired.git'
-    Plug 'https://github.com/vim-scripts/AnsiEsc.vim.git'
+    Plug 'https://github.com/powerman/vim-plugin-AnsiEsc.vim.git'
     Plug 'https://github.com/vim-scripts/kwbdi.vim.git'
     Plug 'https://github.com/w0rp/ale.git'
 
