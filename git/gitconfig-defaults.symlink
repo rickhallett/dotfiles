@@ -17,7 +17,7 @@
     ff = true
     ff-only = true
 [alias]
-    fap = fetch --all --prune
+    fap = fetch --all --prune --tags
 
 # This checks that the local remote ref is up to date before forcing the update
     please = push --force-with-lease
