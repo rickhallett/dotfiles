@@ -131,7 +131,9 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/bronson/vim-visual-star-search.git'
     Plug 'https://github.com/davidhalter/jedi-vim.git'
     Plug 'https://github.com/blindFS/vim-taskwarrior.git'
-    Plug 'https://github.com/godlygeek/tabular.git'
+    if executable('task')
+        Plug 'https://github.com/godlygeek/tabular.git'
+    endif
     Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle.git'
     Plug 'https://github.com/junegunn/fzf.git', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
     Plug 'https://github.com/junegunn/tmux-complete.vim.git'
