@@ -17,3 +17,5 @@ if &completefunc != '' | let &l:omnifunc=&completefunc | endif
 nnoremap <silent> <buffer> <CR> :JavaSearchContext<CR>
 
 setlocal path=,,.,**/src/**/java
+
+let b:ale_linters = []
