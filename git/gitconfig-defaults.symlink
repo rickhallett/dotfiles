@@ -97,7 +97,7 @@
         )                                                   \
     }; f"
 
-    branches = for-each-ref --sort=-committerdate --format="%(color:blue)%(authordate:relative) %(color:red)%(authorname) %(color:white)%(color:bold)%(refname:short)" refs/heads refs/remotes
+    branches = for-each-ref --sort=-committerdate --format='%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)' refs/heads refs/remotes
 [push]
     default = tracking
 [filter "clean_ipynb"]
