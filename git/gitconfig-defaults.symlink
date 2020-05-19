@@ -96,6 +96,8 @@
             sed -i -e s/github.com/gitlab.com/ .git/config; \
         )                                                   \
     }; f"
+
+    branches = for-each-ref --sort=-committerdate --format="%(color:blue)%(authordate:relative) %(color:red)%(authorname) %(color:white)%(color:bold)%(refname:short)" refs/heads refs/remotes
 [push]
     default = tracking
 [filter "clean_ipynb"]
