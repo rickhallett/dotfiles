@@ -171,6 +171,7 @@ function s:ConfigurePlugins() abort
     call s:ConfigureNERDTree()
     call s:ConfigurePolyglot()
     call s:ConfigureSyntastic()
+    call s:ConfigureTex()
 
     if s:CanUsePython()
         call s:ConfigurePowerline()
@@ -248,6 +249,10 @@ endfunction
 function s:ConfigureSyntastic() abort
     let g:syntastic_python_checkers = ['python', 'pyflakes', 'pep8', 'pylint']
     let g:syntastic_javascript_checkers = ['eslint']
+endfunction
+
+function s:ConfigureTex() abort
+    let g:tex_flavor = 'latex'
 endfunction
 
 function s:ConfigurePowerline() abort
