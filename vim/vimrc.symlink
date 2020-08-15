@@ -132,6 +132,8 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/davidhalter/jedi-vim.git'
     if executable('task')
         Plug 'https://github.com/blindFS/vim-taskwarrior.git'
+        Plug 'https://github.com/tbabej/taskwiki.git'
+        Plug 'https://github.com/vimwiki/vimwiki.git'
     endif
     Plug 'https://github.com/godlygeek/tabular.git'
     Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle.git'
@@ -143,7 +145,6 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/racer-rust/vim-racer.git'
     Plug 'https://github.com/scrooloose/nerdtree.git'
     Plug 'https://github.com/sjl/gundo.vim.git'
-    Plug 'https://github.com/tbabej/taskwiki.git'
     Plug 'https://github.com/tpope/vim-commentary.git'
     Plug 'https://github.com/tpope/vim-fugitive.git'
     Plug 'https://github.com/tpope/vim-repeat.git'
@@ -151,7 +152,6 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/tpope/vim-surround.git'
     Plug 'https://github.com/tpope/vim-unimpaired.git'
     Plug 'https://github.com/vim-scripts/kwbdi.vim.git'
-    Plug 'https://github.com/vimwiki/vimwiki.git'
     Plug 'https://github.com/w0rp/ale.git'
 
     Plug 'https://gitlab.com/matthewfranglen/vim-mf-defaults.git'
