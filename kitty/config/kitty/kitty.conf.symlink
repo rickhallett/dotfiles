@@ -1,0 +1,5 @@
+# https://sw.kovidgoyal.net/kitty/conf.html
+font_size 14.0
+font_family Fira Mono for Powerline
+bold_font Fira Mono Bold for Powerline
+shell /home/matthew/.local/bin/tmux -2
