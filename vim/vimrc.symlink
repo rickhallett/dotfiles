@@ -131,13 +131,19 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/bronson/vim-visual-star-search.git'
     Plug 'https://github.com/davidhalter/jedi-vim.git'
     if executable('task')
-        Plug 'https://github.com/blindFS/vim-taskwarrior.git'
-        Plug 'https://github.com/tbabej/taskwiki.git'
-        Plug 'https://github.com/vimwiki/vimwiki.git'
+        let l:out = system('python -c "import tasklib"')
+        unlet l:out
+        if v:shell_error == 0
+            Plug 'https://github.com/blindFS/vim-taskwarrior.git'
+            Plug 'https://github.com/tbabej/taskwiki.git'
+            Plug 'https://github.com/vimwiki/vimwiki.git'
+        endif
     endif
     Plug 'https://github.com/godlygeek/tabular.git'
+    Plug 'https://github.com/guns/vim-sexp.git'
     Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle.git'
     Plug 'https://github.com/junegunn/fzf.git', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+    Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
     Plug 'https://github.com/junegunn/tmux-complete.vim.git'
     Plug 'https://github.com/majutsushi/tagbar.git'
     Plug 'https://github.com/mileszs/ack.vim.git'
@@ -149,6 +155,7 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/tpope/vim-fugitive.git'
     Plug 'https://github.com/tpope/vim-repeat.git'
     Plug 'https://github.com/tpope/vim-sensible.git'
+    Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
     Plug 'https://github.com/tpope/vim-surround.git'
     Plug 'https://github.com/tpope/vim-unimpaired.git'
     Plug 'https://github.com/vim-scripts/kwbdi.vim.git'
