@@ -131,9 +131,13 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/bronson/vim-visual-star-search.git'
     Plug 'https://github.com/davidhalter/jedi-vim.git'
     if executable('task')
-        Plug 'https://github.com/blindFS/vim-taskwarrior.git'
-        Plug 'https://github.com/tbabej/taskwiki.git'
-        Plug 'https://github.com/vimwiki/vimwiki.git'
+        let l:out = system('python -c "import tasklib"')
+        unlet l:out
+        if v:shell_error == 0
+            Plug 'https://github.com/blindFS/vim-taskwarrior.git'
+            Plug 'https://github.com/tbabej/taskwiki.git'
+            Plug 'https://github.com/vimwiki/vimwiki.git'
+        endif
     endif
     Plug 'https://github.com/godlygeek/tabular.git'
     Plug 'https://github.com/guns/vim-sexp.git'
