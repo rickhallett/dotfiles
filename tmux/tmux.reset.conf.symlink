@@ -1,4 +1,8 @@
 ## See https://github.com/tmux/tmux/issues/729: How to reset key bindings to default? #729
+# This unbind every key bind, then rebinds the tmux defaults.
+# It would be a good idea to re-source your tmux configuration afterwards
+
+unbind-key -a
 
 bind-key    -T prefix C-b              send-prefix
 bind-key    -T prefix C-o              rotate-window
