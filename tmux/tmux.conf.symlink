@@ -11,6 +11,11 @@ bind c new-window -c "#{pane_current_path}"
 # C-a C-a for last window, from screen
 bind-key C-a last-window
 
+# arrows to reorder the windows (tabs)
+# See https://superuser.com/questions/343572/how-do-i-reorder-tmux-windows
+bind-key Left swap-window -t -1
+bind-key Right swap-window -t +1
+
 # use vim motion keys while in copy mode
 setw -g mode-keys vi
 
