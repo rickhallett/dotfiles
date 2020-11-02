@@ -160,6 +160,7 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
     Plug 'https://github.com/tpope/vim-surround.git'
     Plug 'https://github.com/tpope/vim-unimpaired.git'
+    Plug 'https://github.com/venantius/vim-cljfmt.git'
     Plug 'https://github.com/vim-scripts/kwbdi.vim.git'
     Plug 'https://github.com/w0rp/ale.git'
 
