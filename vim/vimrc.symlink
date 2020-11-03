@@ -180,6 +180,7 @@ function s:ConfigurePlugins() abort
     call s:ConfigureMarkdown()
     call s:ConfigureNERDTree()
     call s:ConfigurePolyglot()
+    call s:ConfigureRainbowParentheses()
     call s:ConfigureSyntastic()
     call s:ConfigureTex()
 
@@ -254,6 +255,15 @@ endfunction
 
 function s:ConfigurePolyglot() abort
     let g:polyglot_disabled = ['latex']
+endfunction
+
+function s:ConfigureRainbowParentheses() abort
+    let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+
+    augroup rainbow_lisp
+      autocmd!
+      autocmd FileType lisp,clojure,scheme RainbowParentheses
+    augroup END
 endfunction
 
 function s:ConfigureSyntastic() abort
