@@ -16,6 +16,10 @@ bind-key C-a last-window
 bind-key Left swap-window -t -1
 bind-key Right swap-window -t +1
 
+# Just show sessions when switching
+# See https://unix.stackexchange.com/questions/400009/how-to-get-tmux-to-only-show-windows-when-using-choose-tree
+bind-key s choose-tree -s
+
 # use vim motion keys while in copy mode
 setw -g mode-keys vi
 
