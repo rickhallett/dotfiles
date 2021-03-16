@@ -101,7 +101,10 @@
 [push]
     default = tracking
 [filter "clean_ipynb"]
-    clean = jq --indent 1 --monochrome-output '. + if .metadata.git.suppress_outputs | not then { cells: [.cells[] | . + if .cell_type == \"code\" then { outputs: [], execution_count: null } else {} end ] } else {} end'
+    # This will strip output from the notebooks, making commits clean.
+    # I'm choosing to disable it as the output is valuable.
+    # clean = jq --indent 1 --monochrome-output '. + if .metadata.git.suppress_outputs | not then { cells: [.cells[] | . + if .cell_type == \"code\" then { outputs: [], execution_count: null } else {} end ] } else {} end'
+    clean = cat
     smudge = cat
 
 # vim: set ai et sw=4 syntax=gitconfig :
