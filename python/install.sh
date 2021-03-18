@@ -18,6 +18,7 @@ install () {
     install_pipenv       || return ${STATUS_ERROR}
     install_poetry       || return ${STATUS_ERROR}
     install_cookiecutter || return ${STATUS_ERROR}
+    install_rust         || return ${STATUS_ERROR}
 
     return ${STATUS_OK}
 }
@@ -43,6 +44,10 @@ install_poetry () {
 
 install_cookiecutter () {
     pipx install cookiecutter
+}
+
+install_rust () {
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --quiet -y --no-modify-path
 }
 
 install
