@@ -2,7 +2,6 @@ Tarrasch/zsh-colors
 Tarrasch/zsh-functional
 
 bobthecow/git-flow-completion
-ytdl-org/youtube-dl
 
 https://gitlab.com/matthewfranglen/docker-go
 https://gitlab.com/matthewfranglen/format-python
@@ -12,7 +11,6 @@ https://gitlab.com/matthewfranglen/random
 https://gitlab.com/matthewfranglen/terraform-antigen
 matthewfranglen/gitflow-avh
 
-rg3/youtube-dl
 supercrabtree/k
 
 zsh-users/zsh-autosuggestions

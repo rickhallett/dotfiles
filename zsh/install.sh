@@ -9,14 +9,16 @@ install () {
         return ${STATUS_ERROR}
     fi
 
-    install_antibody  || return ${STATUS_ERROR}
-    install_fasd      || return ${STATUS_ERROR}
-    install_fd        || return ${STATUS_ERROR}
-    install_fzf       || return ${STATUS_ERROR}
-    install_noti      || return ${STATUS_ERROR}
-    install_oh_my_zsh || return ${STATUS_ERROR}
-    install_ripgrep   || return ${STATUS_ERROR}
-    install_sdkman    || return ${STATUS_ERROR}
+    install_antibody   || return ${STATUS_ERROR}
+    install_fasd       || return ${STATUS_ERROR}
+    install_fd         || return ${STATUS_ERROR}
+    install_fzf        || return ${STATUS_ERROR}
+    install_noti       || return ${STATUS_ERROR}
+    install_oh_my_zsh  || return ${STATUS_ERROR}
+    install_ripgrep    || return ${STATUS_ERROR}
+    install_sdkman     || return ${STATUS_ERROR}
+    install_pipx       || return ${STATUS_ERROR}
+    install_youtube_dl || return ${STATUS_ERROR}
 }
 
 is_git_command_available () {
@@ -140,6 +142,10 @@ install_ripgrep () {
 
 install_sdkman () {
     curl -s "https://get.sdkman.io" | bash
+}
+
+install_youtube_dl() {
+    pipx install youtube-dl
 }
 
 install
