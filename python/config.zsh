@@ -3,12 +3,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export CONDA_INITIALIZED=
 export PATH="${PATH}:${HOME}/.cargo/bin"
 
-if [ -e "${HOME}/.pyenv" ]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init --path)"
-    eval "$(pyenv init -)"
-fi
+eval "$(pyenv init -)"
 
 function conda {
     if [[ -z "${CONDA_HOME}" ]]; then
