@@ -5,10 +5,7 @@ export PATH="${PATH}:${HOME}/.cargo/bin"
 
 if [ -z "${PYENV_ROOT}" ]; then
     export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-fi
-if [ =python != "${HOME}/.pyenv/shims/python" ]; then
-    eval "$(pyenv init --path)"
+    export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
 fi
 
 eval "$(pyenv init -)"
