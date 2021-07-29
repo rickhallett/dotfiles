@@ -10,7 +10,6 @@ install () {
     fi
 
     install_antibody   || return ${STATUS_ERROR}
-    install_fasd       || return ${STATUS_ERROR}
     install_fd         || return ${STATUS_ERROR}
     install_fzf        || return ${STATUS_ERROR}
     install_noti       || return ${STATUS_ERROR}
@@ -19,6 +18,7 @@ install () {
     install_sdkman     || return ${STATUS_ERROR}
     install_pipx       || return ${STATUS_ERROR}
     install_youtube_dl || return ${STATUS_ERROR}
+    install_zoxide     || return ${STATUS_ERROR}
 }
 
 is_git_command_available () {
@@ -28,24 +28,6 @@ is_git_command_available () {
 install_antibody () {
     make_local_bin
     curl -sfL git.io/antibody | sh -s - -b "${HOME}/.local/bin"
-}
-
-install_fasd () {
-    local fasd_script_file="${HOME}/.fasd.zsh"
-    local fasd_link_file="${LOCAL_BIN_FOLDER}/fasd"
-
-    make_local_bin
-
-    if [ ! -e "${fasd_script_file}" ]
-    then
-        get_url_to_file "https://raw.githubusercontent.com/matthewfranglen/fasd/master/fasd" "${fasd_script_file}" || return 1
-        chmod 755 "${fasd_script_file}"
-    fi
-
-    if [ ! -e "${fasd_link_file}" ]
-    then
-        ln -s "${fasd_script_file}" "${HOME}/.local/bin/fasd"
-    fi
 }
 
 install_fd () {
@@ -146,6 +128,10 @@ install_sdkman () {
 
 install_youtube_dl() {
     pipx install youtube-dl
+}
+
+install_zoxide() {
+    curl -sS https://webinstall.dev/zoxide | bash
 }
 
 install

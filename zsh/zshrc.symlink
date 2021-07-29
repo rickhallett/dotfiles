@@ -90,7 +90,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(fasd git poetry git-flow-avh)
+plugins=(git poetry git-flow-avh)
 startup::log "Set initial variables"
 
 source $ZSH/oh-my-zsh.sh
@@ -128,6 +128,9 @@ startup::log "Sourced oh-my-zsh"
 source ~/.fzf.zsh
 startup::log "Sourced fzf"
 
+eval "$(zoxide init zsh --hook pwd)"
+startup::log "Sourced zoxide"
+
 # all of our zsh files
 typeset -U config_files
 config_files=($(find ${DOTFILES}/ -type f -name '*.zsh' -not -path "${DOTFILES}/zsh/*"))
@@ -151,3 +154,7 @@ unset last_time
 unset _DEBUG_STARTUP
 unfunction startup::log
 unfunction debug::log
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
