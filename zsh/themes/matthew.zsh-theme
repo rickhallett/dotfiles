@@ -24,6 +24,37 @@
 # hostname to whether the last call exited with an error to whether background
 # jobs are running in this shell will all be displayed automatically when
 # appropriate.
+#
+# Set this to a non blank string to enable prompt profiling
+_DEBUG_PROMPT=
+
+if [ -n "${_DEBUG_PROMPT}" ]; then
+    function prompt::start {
+        START_TIME="$(date "+%s.%N")"
+        LAST_TIME="${START_TIME}"
+        echo > /tmp/prompt-log
+    }
+    function prompt::log {
+        local current_time="$(date "+%s.%N")"
+        debug::log "prompt" "${START_TIME}" "${LAST_TIME}" "${current_time}" "${1}" >> /tmp/prompt-log
+        LAST_TIME="${current_time}"
+    }
+    function prompt::end {
+        local current_time="$(date "+%s.%N")"
+        debug::log "prompt" "${START_TIME}" "${LAST_TIME}" "${current_time}" "end" >> /tmp/prompt-log
+        cat /tmp/prompt-log
+    }
+else
+    function prompt::start {
+
+    }
+    function prompt::log {
+
+    }
+    function prompt::end {
+
+    }
+fi
 
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
@@ -264,16 +295,28 @@ pretty_print_time() {
 ## Main prompt
 build_prompt() {
   RETVAL=$?
+  prompt::start
   prompt_status
+  prompt::log "prompt_status"
   prompt_time
+  prompt::log "prompt_time"
   prompt_virtualenv
+  prompt::log "prompt_virtualenv"
   prompt_docker_machine
+  prompt::log "prompt_docker_machine"
   prompt_context
+  prompt::log "prompt_context"
   prompt_dir
+  prompt::log "prompt_dir"
   prompt_git
+  prompt::log "prompt_git"
   prompt_bzr
+  prompt::log "prompt_bzr"
   prompt_hg
+  prompt::log "prompt_hg"
   prompt_end
+  prompt::log "prompt_end"
+  prompt::end
 }
 
 record_timestamp() {
