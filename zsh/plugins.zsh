@@ -38,7 +38,7 @@ else
     }
 fi
 
-if ! which _antibody >/dev/null; then
+if ! which antibody >/dev/null; then
     install_plugins
 fi
 
