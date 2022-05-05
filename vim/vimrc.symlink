@@ -296,9 +296,8 @@ function s:LoadKeymaps() abort
     " let g:a = "b"
 
     " Fugitive bindings
-    nnoremap <unique> <leader>gs :Gstatus<CR>
-    nnoremap <unique> <leader>gc :Gcommit<CR>
-    noremap <unique> <script> <leader>gd :call <SID>ShowGitDiff()<CR>
+    nnoremap <unique> <leader>gs :Git<CR>
+    nnoremap <unique> <leader>gc :Git commit<CR>
 
     " Toggle Tags with <F8>, Nerdtree with <F7>
     nmap <F7> :NERDTreeToggle<CR>:only<CR>
