@@ -38,7 +38,7 @@ else
     }
 fi
 
-if ! which antibody >/dev/null; then
+if which antibody >/dev/null; then
     install_plugins
 fi
 
@@ -47,5 +47,6 @@ unfunction plugin::log
 unset PLUGIN_START_TIME
 unset PLUGIN_LAST_TIME
 unset _DEBUG_PLUGINS
+
 
 # vim: set ai et sw=4 syntax=zsh :
