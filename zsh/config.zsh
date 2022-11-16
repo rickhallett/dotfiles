@@ -9,11 +9,6 @@ export EDITOR=vim
 export SVN_EDITOR=vim
 export GIT_EDITOR=vim
 
-if [ -z ${JAVA_HOME} ] && [ -e /usr/lib/jvm/default-java ]
-then
-    export JAVA_HOME=/usr/lib/jvm/default-java
-fi
-
 export LC_ALL="en_GB.utf8"
 
 # https://wiki.ubuntu.com/DesktopExperienceTeam/ApplicationMenu
