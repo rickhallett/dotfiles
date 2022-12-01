@@ -1,7 +1,11 @@
-source /etc/environment
-
 # Set this to a non blank string to enable launch profiling
 _DEBUG_STARTUP=
+
+if [ -n "${_DEBUG_STARTUP}" ]; then
+    zmodload zsh/zprof
+fi
+
+source /etc/environment
 
 function debug::log {
     local prefix=$1
@@ -153,6 +157,11 @@ for file in ${config_files:#*/path.zsh}
 do
   source $file
 done
+
+if [ -n "${_DEBUG_STARTUP}" ]; then
+    zprof
+    zmodload -u zsh/zprof
+fi
 
 unset config_files
 unset start_time
