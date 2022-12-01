@@ -3,11 +3,6 @@ function is_running_as () {
     local process_pid=$1
     local process_name=$2
 
-    if ! ps -p "${process_pid}" &> /dev/null
-    then
-        return 1
-    fi
-
     [ "$(ps -p ${process_pid} -o comm=)" = "${process_name}" ]
 }
 
