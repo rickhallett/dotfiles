@@ -159,7 +159,3 @@ unset start_time
 unset last_time
 unset _DEBUG_STARTUP
 unfunction startup::log
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-

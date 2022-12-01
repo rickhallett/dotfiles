@@ -21,6 +21,9 @@ function install_plugins() {
 
     export SDKMAN_DIR="${HOME}/.sdkman"
     [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
+    # Generated for envman. Do not edit.
+    [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 }
 
 if [ -n "${_DEBUG_PLUGINS}" ]; then
