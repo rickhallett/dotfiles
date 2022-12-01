@@ -24,10 +24,6 @@ function load_ssh_agent () {
 }
 
 function load_dbus_daemon () {
-    if [ -n $SSH_CONNECTION ]
-    then
-        return
-    fi
     if [ -f ~/.dbus.env ]
     then
         . ~/.dbus.env > /dev/null
