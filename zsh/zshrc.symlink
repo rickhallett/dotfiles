@@ -1,7 +1,11 @@
-source /etc/environment
-
 # Set this to a non blank string to enable launch profiling
 _DEBUG_STARTUP=
+
+if [ -n "${_DEBUG_STARTUP}" ]; then
+    zmodload zsh/zprof
+fi
+
+source /etc/environment
 
 function debug::log {
     local prefix=$1
@@ -154,12 +158,13 @@ do
   source $file
 done
 
+if [ -n "${_DEBUG_STARTUP}" ]; then
+    zprof
+    zmodload -u zsh/zprof
+fi
+
 unset config_files
 unset start_time
 unset last_time
 unset _DEBUG_STARTUP
 unfunction startup::log
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
