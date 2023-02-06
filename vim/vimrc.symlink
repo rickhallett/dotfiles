@@ -165,6 +165,8 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/tpope/vim-salve.git', { 'for': 'clojure' }
     Plug 'https://github.com/venantius/vim-cljfmt.git', { 'for': 'clojure' }
 
+    Plug 'https://github.com/Quramy/tsuquyomi.git', { 'for': 'typescript' }
+
     Plug 'https://gitlab.com/matthewfranglen/vim-mf-defaults.git'
     Plug 'https://github.com/matthewfranglen/vim-nerdtree-direnter.git'
     Plug 'https://gitlab.com/matthewfranglen/vim-static-import.git'
