@@ -85,7 +85,7 @@ install_pip () {
 
 install_pipx () {
     make_local_bin
-    PIP_REQUIRE_VIRTUALENV= pip install --user pipx
+    PIP_REQUIRE_VIRTUALENV= python -m pip install --user pipx
 }
 
 is_gem_command_available () {

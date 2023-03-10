@@ -140,10 +140,8 @@ function s:RegisterPlugins() abort
         endif
     endif
     Plug 'https://github.com/godlygeek/tabular.git'
-    Plug 'https://github.com/guns/vim-sexp.git', { 'for': 'clojure' }
     Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle.git'
     Plug 'https://github.com/junegunn/fzf.git', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-    Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git', { 'for': 'clojure' }
     Plug 'https://github.com/junegunn/tmux-complete.vim.git'
     Plug 'https://github.com/majutsushi/tagbar.git'
     Plug 'https://github.com/mileszs/ack.vim.git'
@@ -152,17 +150,22 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/scrooloose/nerdtree.git'
     Plug 'https://github.com/sjl/gundo.vim.git'
     Plug 'https://github.com/tpope/vim-commentary.git'
-    Plug 'https://github.com/tpope/vim-fireplace.git', { 'for': 'clojure', 'commit': '8a4f232e9844d73adb41eb29148f0c046c730f98' }
     Plug 'https://github.com/tpope/vim-fugitive.git'
     Plug 'https://github.com/tpope/vim-repeat.git'
-    Plug 'https://github.com/tpope/vim-salve.git', { 'for': 'clojure' }
     Plug 'https://github.com/tpope/vim-sensible.git'
     Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
     Plug 'https://github.com/tpope/vim-surround.git'
     Plug 'https://github.com/tpope/vim-unimpaired.git'
-    Plug 'https://github.com/venantius/vim-cljfmt.git', { 'for': 'clojure' }
     Plug 'https://github.com/vim-scripts/kwbdi.vim.git'
     Plug 'https://github.com/w0rp/ale.git'
+
+    Plug 'https://github.com/guns/vim-sexp.git', { 'for': 'clojure' }
+    Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git', { 'for': 'clojure' }
+    Plug 'https://github.com/tpope/vim-fireplace.git', { 'for': 'clojure', 'commit': '8a4f232e9844d73adb41eb29148f0c046c730f98' }
+    Plug 'https://github.com/tpope/vim-salve.git', { 'for': 'clojure' }
+    Plug 'https://github.com/venantius/vim-cljfmt.git', { 'for': 'clojure' }
+
+    Plug 'https://github.com/Quramy/tsuquyomi.git', { 'for': 'typescript' }
 
     Plug 'https://gitlab.com/matthewfranglen/vim-mf-defaults.git'
     Plug 'https://github.com/matthewfranglen/vim-nerdtree-direnter.git'
