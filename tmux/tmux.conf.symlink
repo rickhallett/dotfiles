@@ -56,6 +56,9 @@ set -g @plugin 'tmux-plugins/tmux-pain-control'
 set -g @plugin 'tmux-plugins/tmux-sessionist'
 set -g @plugin 'tmux-plugins/tmux-yank'
 
+# make tmux yank overwrite the clipboard instead of appending
+set -g @override_copy_command 'xsel --input --clipboard'
+
 # Install tmux plugin manager if missing
 # See https://github.com/tmux-plugins/tpm/blob/master/docs/automatic_tpm_installation.md
 if "test ! -d ~/.tmux/plugins/tpm" \
