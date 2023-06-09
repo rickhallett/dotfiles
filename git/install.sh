@@ -2,7 +2,8 @@ set -eu
 
 . "`dirname \`dirname \\\`readlink -f $0\\\`\``/script/lib.sh"
 
-HUB_URL="https://github.com/github/hub/releases/download/v2.2.9/hub-linux-amd64-2.2.9.tgz"
+HUB_VERSION="2.14.2"
+HUB_URL="https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz"
 HUB_DOWNLOAD="/tmp/hub.tgz"
 HUB_COMMAND="${LOCAL_BIN_FOLDER}/hub"
 
