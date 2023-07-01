@@ -3,6 +3,10 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export CONDA_INITIALIZED=
 export PATH="${PATH}:${HOME}/.cargo/bin"
 
+if [ -e "/usr/local/cuda" ]; then
+    export PATH="${PATH}:/usr/local/cuda/bin"
+fi
+
 if [ -z "${PYENV_ROOT}" ]; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
