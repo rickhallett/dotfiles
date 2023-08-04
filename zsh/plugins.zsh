@@ -3,8 +3,8 @@ _DEBUG_PLUGINS=
 function install_plugins() {
     plugin::log "Starting..."
     export ZPLUG_HOME="${HOME}/.zplug"
+    export ZPLUG_LOADFILE="${HOME}/.zsh-plugins"
     source "${ZPLUG_HOME}/init.zsh"
-    source ~/.zsh-plugins
     if ! zplug check --verbose; then
         zplug install
     fi
