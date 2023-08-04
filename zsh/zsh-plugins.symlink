@@ -1,16 +1,19 @@
-zpm load @github/Tarrasch/zsh-colors
-zpm load @github/Tarrasch/zsh-functional
-zpm load @github/ajeetdsouza/zoxide
-zpm load @github/bobthecow/git-flow-completion
-zpm load @github/junegunn/fzf
-zpm load @github/supercrabtree/k
-zpm load @github/zsh-users/zsh-autosuggestions
-zpm load @github/zsh-users/zsh-history-substring-search
-zpm load @github/zsh-users/zsh-syntax-highlighting
-zpm load @gitlab/matthewfranglen/git-stashes
-zpm load @gitlab/matthewfranglen/random
+zpm load @omz
+
+zpm load \
+  @github/Tarrasch/zsh-colors \
+  @github/Tarrasch/zsh-functional \
+  @github/ajeetdsouza/zoxide \
+  @github/bobthecow/git-flow-completion \
+  @github/junegunn/fzf \
+  @github/supercrabtree/k \
+  @gitlab/matthewfranglen/git-stashes \
+  @gitlab/matthewfranglen/random
 
 zpm load @github/CJ-Systems/gitflow-cjs,path:/
 zpm load @github/sharkdp/fd
 zpm load @github/BurntSushi/ripgrep
 zpm load @github/variadico/noti
+
+zpm load @github/zsh-users/zsh-autosuggestions
+zpm load @github/zsh-users/zsh-syntax-highlighting
