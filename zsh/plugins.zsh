@@ -2,21 +2,20 @@ _DEBUG_PLUGINS=
 
 function install_plugins() {
     plugin::log "Starting..."
-
-    # install and load zpm
-    export ZPM_HOME="${HOME}/.zpm"
-    if [[ ! -f "${ZPM_HOME}/zpm.zsh" ]]; then
-        git clone --recursive https://github.com/zpm-zsh/zpm "${ZPM_HOME}"
+    export ANTIBODY_HOME="${HOME}/.antibody"
+    if [ ! -e "${ANTIBODY_HOME}" ]; then
+        mkdir "${ANTIBODY_HOME}"
     fi
 
-    # caching of the plugins is broken, see https://github.com/zpm-zsh/zpm/issues/46
-    if [ -e "${ZSH_CACHE_DIR}/zpm-cache.zsh" ]; then
-        rm "${ZSH_CACHE_DIR}/zpm-cache.zsh"
+    if [ ! -e ~/.zsh-plugins.sh ] || [ ~/.zsh-plugins(:A) -nt ~/.zsh-plugins.sh ] || [ ~/.local-plugins -nt ~/.zsh-plugins.sh ]; then
+        (
+            antibody bundle < ~/.zsh-plugins
+            if [ -e ~/.local-plugins ]; then
+                antibody bundle < ~/.local-plugins
+            fi
+        ) > ~/.zsh-plugins.sh
     fi
-
-    source "${ZPM_HOME}/zpm.zsh"
-    source ${HOME}/.zsh-plugins(:A)
-
+    source ~/.zsh-plugins.sh
     plugin::log "Applied plugins"
 
     # Set the autocomplete color for zsh-autocomplete.
