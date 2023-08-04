@@ -2,20 +2,12 @@ _DEBUG_PLUGINS=
 
 function install_plugins() {
     plugin::log "Starting..."
-    export ANTIBODY_HOME="${HOME}/.antibody"
-    if [ ! -e "${ANTIBODY_HOME}" ]; then
-        mkdir "${ANTIBODY_HOME}"
+    export ZPLUG_HOME="${HOME}/.zplug"
+    source "${ZPLUG_HOME}/init.zsh"
+    source ~/.zsh-plugins
+    if ! zplug check --verbose; then
+        zplug install
     fi
-
-    if [ ! -e ~/.zsh-plugins.sh ] || [ ~/.zsh-plugins(:A) -nt ~/.zsh-plugins.sh ] || [ ~/.local-plugins -nt ~/.zsh-plugins.sh ]; then
-        (
-            antibody bundle < ~/.zsh-plugins
-            if [ -e ~/.local-plugins ]; then
-                antibody bundle < ~/.local-plugins
-            fi
-        ) > ~/.zsh-plugins.sh
-    fi
-    source ~/.zsh-plugins.sh
     plugin::log "Applied plugins"
 
     # Set the autocomplete color for zsh-autocomplete.

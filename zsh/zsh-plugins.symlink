@@ -1,16 +1,19 @@
-Tarrasch/zsh-colors
-Tarrasch/zsh-functional
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-bobthecow/git-flow-completion
+zplug 'BurntSushi/ripgrep'
+zplug 'CJ-Systems/gitflow-cjs'
+zplug 'Tarrasch/zsh-colors'
+zplug 'Tarrasch/zsh-functional'
+zplug 'ajeetdsouza/zoxide'
+zplug 'bobthecow/git-flow-completion'
+zplug 'junegunn/fzf'
+zplug 'sharkdp/fd'
+zplug 'supercrabtree/k'
+zplug 'variadico/noti'
 
-https://gitlab.com/matthewfranglen/format-python
-https://gitlab.com/matthewfranglen/git-stashes
-https://gitlab.com/matthewfranglen/random
-matthewfranglen/gitflow-avh
+zplug 'matthewfranglen/git-stashes', from:gitlab
+zplug 'matthewfranglen/random', from:gitlab
 
-supercrabtree/k
-ytdl-org/youtube-dl
-
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-history-substring-search
-zsh-users/zsh-syntax-highlighting
+zplug 'zsh-users/zsh-autosuggestions'
+zplug 'zsh-users/zsh-history-substring-search'
+zplug 'zsh-users/zsh-syntax-highlighting'
