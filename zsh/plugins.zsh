@@ -4,6 +4,7 @@ function install_plugins() {
     plugin::log "Starting..."
     export ZPLUG_HOME="${HOME}/.zplug"
     export ZPLUG_LOADFILE="${HOME}/.zsh-plugins"
+    export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
     source "${ZPLUG_HOME}/init.zsh"
     if ! zplug check --verbose; then
         zplug install

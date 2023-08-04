@@ -1,19 +1,20 @@
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+# zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
-zplug 'BurntSushi/ripgrep'
-zplug 'CJ-Systems/gitflow-cjs'
-zplug 'Tarrasch/zsh-colors'
-zplug 'Tarrasch/zsh-functional'
-zplug 'ajeetdsouza/zoxide'
-zplug 'bobthecow/git-flow-completion'
-zplug 'junegunn/fzf'
-zplug 'sharkdp/fd'
-zplug 'supercrabtree/k'
-zplug 'variadico/noti'
+zplug "CJ-Systems/gitflow-cjs"
+zplug "Tarrasch/zsh-colors"
+zplug "Tarrasch/zsh-functional"
+zplug "ajeetdsouza/zoxide"
+zplug "bobthecow/git-flow-completion"
+zplug "sharkdp/fd"
+zplug "supercrabtree/k"
 
-zplug 'matthewfranglen/git-stashes', from:gitlab
-zplug 'matthewfranglen/random', from:gitlab
+zplug "BurntSushi/ripgrep", from:gh-r, as:command, rename-to:rg, use:"*x86_64*linux*"
+zplug "variadico/noti", from:gh-r, as:command, rename-to:noti, use:"*linux*amd64*"
+zplug "junegunn/fzf", from:gh-r, as:command, rename-to:fzf, use:"*linux*amd64*"
 
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'zsh-users/zsh-history-substring-search'
-zplug 'zsh-users/zsh-syntax-highlighting'
+zplug "matthewfranglen/git-stashes", from:gitlab
+zplug "matthewfranglen/random", from:gitlab
+
+zplug "zsh-users/zsh-autosuggestions", as:plugin
+zplug "zsh-users/zsh-history-substring-search", as:plugin
+zplug "zsh-users/zsh-syntax-highlighting", as:plugin
