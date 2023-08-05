@@ -20,6 +20,8 @@
 
 set -euo pipefail
 
+readonly PLUGIN_FOLDER="${0:A:h}"
+
 IS_SSH=0
 for command in "$@"; do
     shift
@@ -48,4 +50,13 @@ for command in "$@"; do
 done
 
 if [ ${IS_SSH} -eq 1 ]; then
-    echo 
+    echo 'if [ -n "${SSH_CONNECTION}" ]; then'
+fi
+
+readonly COMMAND="${PLUGIN_FOLDER}/@load-${1?provide the command to invoke}"
+shift
+"${COMMAND}" "$@"
+
+if [ ${IS_SSH} -eq 1 ]; then
+    echo 'fi'
+fi
