@@ -1,0 +1,23 @@
+#!/usr/bin/zsh
+#
+# This loads the plugins by sourcing a file.
+# To generate the file the plugin definitions are loaded from ~/.zsh-plugins.
+# If the ~/.zsh-plugins file is newer then the definition file is regenerated.
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h}"
+
+readonly PLUGIN_FILE="${HOME}/.zsh-plugins"
+readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
+readonly COMPILED_FILE="${CACHE_FOLDER}/commands"
+
+if [ "${PLUGIN_FILE:A}" -nt "${COMPILED_FILE:A}" ]; then
+    if [ ! -e "${CACHE_FOLDER}" ]; then
+        mkdir -p "${CACHE_FOLDER}"
+    fi
+
+    PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" > "${COMPILED_FILE}"
+fi
+
+source "${COMPILED_FILE}"
