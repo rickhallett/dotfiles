@@ -18,12 +18,14 @@ readonly URL="${1?You must provide the https url to use}"
 readonly FOLDER_NAME="${CLONE_CACHE_FOLDER}/${URL:gs#/#--#:gs#:##}"
 shift
 
-if [ ! -e "${FOLDER_NAME}" ]; then
-    if [ ! -e "${CLONE_CACHE_FOLDER}" ]; then
-        mkdir -p "${CLONE_CACHE_FOLDER}"
-    fi
+(
+    if [ ! -e "${FOLDER_NAME}" ]; then
+        if [ ! -e "${CLONE_CACHE_FOLDER}" ]; then
+            mkdir -p "${CLONE_CACHE_FOLDER}"
+        fi
 
-    git clone "${URL}" "${FOLDER_NAME}"
-fi
+        git clone "${URL}" "${FOLDER_NAME}"
+    fi
+) >&2
 
 "${PLUGIN_FOLDER}/@load" directory "${FOLDER_NAME}"

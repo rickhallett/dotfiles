@@ -25,35 +25,37 @@ readonly REPO_NAME="${1?You must provide the repo to use}"
 readonly FOLDER_NAME="${RELEASE_CACHE_FOLDER}/${REPO_NAME:gs#/#--#}"
 shift
 
-if [ ! -e "${FOLDER_NAME}" ]; then
-    if [ ! -e "${RELEASE_CACHE_FOLDER}" ]; then
-        mkdir -p "${RELEASE_CACHE_FOLDER}"
+(
+    if [ ! -e "${FOLDER_NAME}" ]; then
+        if [ ! -e "${RELEASE_CACHE_FOLDER}" ]; then
+            mkdir -p "${RELEASE_CACHE_FOLDER}"
+        fi
+
+        readonly TEMP_DIR="$(mktemp -d)"
+        trap "rm -rf '${TEMP_DIR}'" HUP INT QUIT
+
+        TERMS=""
+        for argument in "$@"; do
+            case $argument in
+                terms:*)
+                    TERMS="${argument/*:}"
+                    ;;
+                *)
+                    echo "Unknown argument: ${argument}" >&2
+                    exit 1
+                    ;;
+            esac
+        done
+
+        readonly RELEASE_URL="$(curl https://api.github.com/repos/${REPO_NAME}/releases/latest | python ${PLUGIN_FOLDER}/github_release.py "${TERMS}")"
+        (
+            cd "${TEMP_DIR}"
+            wget "${RELEASE_URL}"
+            tar xzf *.tar.gz
+            rm *.tar.gz
+            mv * "${FOLDER_NAME}"
+        )
     fi
-
-    readonly TEMP_DIR="$(mktemp -d)"
-    trap "rm -rf '${TEMP_DIR}'" HUP INT QUIT
-
-    TERMS=""
-    for argument in "$@"; do
-        case $argument in
-            terms:*)
-                TERMS="${argument/*:}"
-                ;;
-            *)
-                echo "Unknown argument: ${argument}" >&2
-                exit 1
-                ;;
-        esac
-    done
-
-    readonly RELEASE_URL="$(curl https://api.github.com/repos/${REPO_NAME}/releases/latest | python ${PLUGIN_FOLDER}/github_release.py "${TERMS}")"
-    (
-        cd "${TEMP_DIR}"
-        wget "${RELEASE_URL}"
-        tar xzf *.tar.gz
-        rm *.tar.gz
-        mv * "${FOLDER_NAME}"
-    )
-fi
+) >&2
 
 "${PLUGIN_FOLDER}/@load" directory "${FOLDER_NAME}"
