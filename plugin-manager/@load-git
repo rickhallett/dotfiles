@@ -1,0 +1,55 @@
+#!/usr/bin/zsh
+#
+# This loads a dependency from a github release.
+# This will download the file to the xdg cache.
+#
+# This takes the most recent release that matches the patterns, downloads and decompresses it.
+# Then it will put the root folder on the path, add any autocomplete folder to autocomplete.
+#
+# The commands to execute will be echoed to stdout.
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h}"
+
+readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles/repos/releases"
+
+readonly REPO_NAME="${1?You must provide the repo to use}"
+readonly FOLDER_NAME="${CACHE_FOLDER}/${REPO_NAME:s#/#--#}"
+shift
+
+if [ ! -e "${FOLDER_NAME}" ]; then
+    if [ ! -e "${CACHE_FOLDER}" ]; then
+        mkdir -p "${CACHE_FOLDER}"
+    fi
+
+    readonly TEMP_DIR="$(mktemp -d)"
+    trap "rm -rf '${TEMP_DIR}'" HUP INT QUIT
+
+    TERMS=""
+    for argument in "$@"; do
+        case $argument in
+            terms:*)
+                TERMS="${argument/*:}"
+                ;;
+            *)
+                echo "Unknown argument: ${argument}" >&2
+                exit 1
+                ;;
+        esac
+    done
+
+    readonly RELEASE_URL="$(curl https://api.github.com/repos/sharkdp/fd/releases/latest | python ${PLUGIN_FOLDER}/github_release.py "${TERMS}")"
+    (
+        cd "${TEMP_DIR}"
+        wget "${RELEASE_URL}"
+        tar xzf *.tar.gz
+        rm *.tar.gz
+        mv * "${FOLDER_NAME}"
+    )
+fi
+
+if [ -e "${FOLDER_NAME}/autocomplete" ]; then
+    echo 'export FPATH="${FPATH}:'"${FOLDER_NAME}/autocomplete"'"'
+fi
+echo 'export PATH="${PATH}:'"${FOLDER_NAME}"'"'
