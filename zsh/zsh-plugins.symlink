@@ -1,16 +1,13 @@
-Tarrasch/zsh-colors
-Tarrasch/zsh-functional
+@load git https://github.com/Tarrasch/zsh-colors
+@load git https://github.com/Tarrasch/zsh-functional
+@load git https://github.com/bobthecow/git-flow-completion
+@load git https://github.com/matthewfranglen/gitflow-avh
+@load git https://github.com/supercrabtree/k
+@load git https://github.com/ytdl-org/youtube-dl
+@load git https://gitlab.com/matthewfranglen/format-python
+@load git https://gitlab.com/matthewfranglen/git-stashes
+@load git https://gitlab.com/matthewfranglen/random
 
-bobthecow/git-flow-completion
-
-https://gitlab.com/matthewfranglen/format-python
-https://gitlab.com/matthewfranglen/git-stashes
-https://gitlab.com/matthewfranglen/random
-matthewfranglen/gitflow-avh
-
-supercrabtree/k
-ytdl-org/youtube-dl
-
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-history-substring-search
-zsh-users/zsh-syntax-highlighting
+@load git https://github.com/zsh-users/zsh-autosuggestions
+@load git https://github.com/zsh-users/zsh-history-substring-search
+@load git https://github.com/zsh-users/zsh-syntax-highlighting
