@@ -22,7 +22,7 @@ readonly PLUGIN_FOLDER="${0:A:h}"
 readonly RELEASE_CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles/repos/releases"
 
 readonly REPO_NAME="${1?You must provide the repo to use}"
-readonly FOLDER_NAME="${RELEASE_CACHE_FOLDER}/${REPO_NAME:s#/#--#}"
+readonly FOLDER_NAME="${RELEASE_CACHE_FOLDER}/${REPO_NAME:gs#/#--#}"
 shift
 
 if [ ! -e "${FOLDER_NAME}" ]; then

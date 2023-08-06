@@ -15,7 +15,7 @@ readonly PLUGIN_FOLDER="${0:A:h}"
 readonly CLONE_CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles/repos/clones"
 
 readonly URL="${1?You must provide the https url to use}"
-readonly FOLDER_NAME="${CLONE_CACHE_FOLDER}/${URL:s#/#--#}"
+readonly FOLDER_NAME="${CLONE_CACHE_FOLDER}/${URL:gs#/#--#:gs#:##}"
 shift
 
 if [ ! -e "${FOLDER_NAME}" ]; then
