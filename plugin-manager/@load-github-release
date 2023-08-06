@@ -46,7 +46,7 @@ if [ ! -e "${FOLDER_NAME}" ]; then
         esac
     done
 
-    readonly RELEASE_URL="$(curl https://api.github.com/repos/sharkdp/fd/releases/latest | python ${PLUGIN_FOLDER}/github_release.py "${TERMS}")"
+    readonly RELEASE_URL="$(curl https://api.github.com/repos/${REPO_NAME}/releases/latest | python ${PLUGIN_FOLDER}/github_release.py "${TERMS}")"
     (
         cd "${TEMP_DIR}"
         wget "${RELEASE_URL}"
