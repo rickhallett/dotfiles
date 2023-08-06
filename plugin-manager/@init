@@ -12,7 +12,7 @@ readonly PLUGIN_FILE="${HOME}/.zsh-plugins"
 readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
 readonly COMPILED_FILE="${CACHE_FOLDER}/commands"
 
-if [ "${PLUGIN_FILE:A}" -nt "${COMPILED_FILE:A}" ]; then
+if [ ! -e "${COMPILED_FILE}" ] || [ "${PLUGIN_FILE:A}" -nt "${COMPILED_FILE}" ]; then
     if [ ! -e "${CACHE_FOLDER}" ]; then
         mkdir -p "${CACHE_FOLDER}"
     fi
