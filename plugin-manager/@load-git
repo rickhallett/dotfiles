@@ -12,11 +12,19 @@ set -euo pipefail
 
 readonly PLUGIN_FOLDER="${0:A:h}"
 
-readonly CLONE_CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles/repos/clones"
+readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
+readonly CLONE_CACHE_FOLDER="${CACHE_FOLDER}/repos/clones"
 
 readonly URL="${1?You must provide the https url to use}"
-readonly FOLDER_NAME="${CLONE_CACHE_FOLDER}/${URL:gs#/#--#:gs#:##}"
+readonly NAME="${URL:gs#/#--#:gs#:##}"
+readonly FOLDER_NAME="${CLONE_CACHE_FOLDER}/${NAME}"
 shift
+
+readonly LOG_FOLDER="${CACHE_FOLDER}/logs"
+if [ ! -e "${LOG_FOLDER}" ]; then
+    mkdir "${LOG_FOLDER}"
+fi
+readonly LOG_FILE="${LOG_FOLDER}/${NAME}"
 
 (
     if [ ! -e "${FOLDER_NAME}" ]; then
@@ -26,6 +34,6 @@ shift
 
         git clone "${URL}" "${FOLDER_NAME}"
     fi
-) >&2
+) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
 
 "${PLUGIN_FOLDER}/@load" directory "${FOLDER_NAME}"
