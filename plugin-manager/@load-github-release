@@ -53,7 +53,19 @@ shift
             wget "${RELEASE_URL}"
             tar xzf *.tar.gz
             rm *.tar.gz
-            mv * "${FOLDER_NAME}"
+
+            if [ $(ls | wc -l) -gt 1 ]; then
+                mkdir "${FOLDER_NAME}"
+                mv * "${FOLDER_NAME}"
+            else
+                FILE="$(ls)"
+                if [ -d "${FILE}" ]; then
+                    mv "${FILE}" "${FOLDER_NAME}"
+                else
+                    mkdir "${FOLDER_NAME}"
+                    mv "${FILE}" "${FOLDER_NAME}"
+                fi
+            fi
         )
     fi
 ) >&2
