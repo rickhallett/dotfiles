@@ -6,7 +6,11 @@ def to_qualifiers(url):
     name = url.split("/")[-1]
     if name.endswith(".tar.gz"):
         name = name[:-len(".tar.gz")]
-    return name.split("-")
+    return frozenset(
+        word
+        for words in name.split("-")
+        for word in words.split(".")
+    )
 
 
 terms = sys.argv[1].split(",") if len(sys.argv) > 1 else []
