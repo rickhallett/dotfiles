@@ -8,10 +8,12 @@
 #
 # This uses tags to identify which release to use.
 # The terms: tag takes a comma separated list of words to look for in the filename of the release.
+# The exec: tag takes a literal command to execute after loading the release.
 #
 # Example:
 #
 # @load github-release sharkdp/fd terms:x86_64,linux,musl
+# @load github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
 #
 # The commands to execute will be echoed to stdout.
 
@@ -25,6 +27,23 @@ readonly REPO_NAME="${1?You must provide the repo to use}"
 readonly FOLDER_NAME="${RELEASE_CACHE_FOLDER}/${REPO_NAME:gs#/#--#}"
 shift
 
+TERMS=""
+EXEC=""
+for argument in "$@"; do
+    case $argument in
+        terms:*)
+            TERMS="${argument/*:}"
+            ;;
+        exec:*)
+            EXEC="${argument/*:}"
+            ;;
+        *)
+            echo "Unknown argument: ${argument}" >&2
+            exit 1
+            ;;
+    esac
+done
+
 (
     if [ ! -e "${FOLDER_NAME}" ]; then
         if [ ! -e "${RELEASE_CACHE_FOLDER}" ]; then
@@ -33,19 +52,6 @@ shift
 
         readonly TEMP_DIR="$(mktemp -d)"
         trap "rm -rf '${TEMP_DIR}'" HUP INT QUIT
-
-        TERMS=""
-        for argument in "$@"; do
-            case $argument in
-                terms:*)
-                    TERMS="${argument/*:}"
-                    ;;
-                *)
-                    echo "Unknown argument: ${argument}" >&2
-                    exit 1
-                    ;;
-            esac
-        done
 
         readonly RELEASE_URL="$(curl https://api.github.com/repos/${REPO_NAME}/releases/latest | python ${PLUGIN_FOLDER}/github_release.py "${TERMS}")"
         (
@@ -71,3 +77,6 @@ shift
 ) >&2
 
 "${PLUGIN_FOLDER}/@load" directory "${FOLDER_NAME}"
+if [ -n "${EXEC}" ]; then
+    echo "${EXEC}"
+fi
