@@ -11,6 +11,9 @@
 set -euo pipefail
 
 readonly PLUGIN_FOLDER="${0:A:h}"
+readonly DOTFILES_FOLDER="${0:A:h:h}"
+
+source "${DOTFILES_FOLDER}/script/lib.sh"
 
 readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
 readonly CLONE_CACHE_FOLDER="${CACHE_FOLDER}/repos/clones"
@@ -35,5 +38,6 @@ readonly LOG_FILE="${LOG_FOLDER}/${NAME}"
         git clone "${URL}" "${FOLDER_NAME}"
     fi
 ) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
+success "${URL}" >&2
 
 "${PLUGIN_FOLDER}/@load" directory "${FOLDER_NAME}"

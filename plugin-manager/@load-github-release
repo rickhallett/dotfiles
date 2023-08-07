@@ -20,6 +20,9 @@
 set -euo pipefail
 
 readonly PLUGIN_FOLDER="${0:A:h}"
+readonly DOTFILES_FOLDER="${0:A:h:h}"
+
+source "${DOTFILES_FOLDER}/script/lib.sh"
 
 readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
 readonly RELEASE_CACHE_FOLDER="${CACHE_FOLDER}/repos/releases"
@@ -83,6 +86,7 @@ done
         )
     fi
 ) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
+success "${REPO_NAME}" >&2
 
 "${PLUGIN_FOLDER}/@load" directory "${FOLDER_NAME}"
 if [ -n "${EXEC}" ]; then
