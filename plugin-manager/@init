@@ -4,7 +4,20 @@
 # To generate the file the plugin definitions are loaded from ~/.zsh-plugins.
 # If the ~/.zsh-plugins file is newer then the definition file is regenerated.
 
-set -euo pipefail
+if [ ! -o errexit ]; then
+    setopt errexit
+    _CLEAR_ERREXIT=1
+fi
+
+if [ ! -o nounset ]; then
+    setopt nounset
+    _CLEAR_NOUNSET=1
+fi
+
+if [ ! -o pipefail ]; then
+    setopt pipefail
+    _CLEAR_PIPEFAIL=1
+fi
 
 readonly PLUGIN_FOLDER="${0:A:h}"
 
@@ -21,3 +34,16 @@ if [ ! -e "${COMPILED_FILE}" ] || [ "${PLUGIN_FILE:A}" -nt "${COMPILED_FILE}" ];
 fi
 
 source "${COMPILED_FILE}"
+
+if [ "${_CLEAR_ERREXIT}" = "1" ]; then
+    unsetopt errexit
+    unset _CLEAR_ERREXIT
+fi
+if [ "${_CLEAR_NOUNSET}" = "1" ]; then
+    unsetopt nounset
+    unset _CLEAR_NOUNSET
+fi
+if [ "${_CLEAR_PIPEFAIL}" = "1" ]; then
+    unsetopt pipefail
+    unset _CLEAR_PIPEFAIL
+fi
