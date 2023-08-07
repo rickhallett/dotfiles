@@ -10,3 +10,10 @@
 @load git https://github.com/zsh-users/zsh-autosuggestions
 @load git https://github.com/zsh-users/zsh-history-substring-search
 @load git https://github.com/zsh-users/zsh-syntax-highlighting
+
+@load github-release sharkdp/fd terms:x86_64,linux,musl
+@load github-release variadico/noti terms:linux
+@load github-release BurntSushi/ripgrep terms:linux,musl
+@load github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
+
+# vim: set ai et sw=4 syntax=zsh :
