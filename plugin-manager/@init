@@ -8,12 +8,10 @@ if [ ! -o errexit ]; then
     setopt errexit
     _CLEAR_ERREXIT=1
 fi
-
 if [ ! -o nounset ]; then
     setopt nounset
     _CLEAR_NOUNSET=1
 fi
-
 if [ ! -o pipefail ]; then
     setopt pipefail
     _CLEAR_PIPEFAIL=1
@@ -23,7 +21,7 @@ readonly PLUGIN_FOLDER="${0:A:h}"
 
 readonly PLUGIN_FILE="${HOME}/.zsh-plugins"
 readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
-readonly COMPILED_FILE="${CACHE_FOLDER}/commands"
+readonly COMPILED_FILE="${CACHE_FOLDER}/commands.zsh"
 
 if [ ! -e "${COMPILED_FILE}" ] || [ "${PLUGIN_FILE:A}" -nt "${COMPILED_FILE}" ]; then
     if [ ! -e "${CACHE_FOLDER}" ]; then
@@ -31,6 +29,14 @@ if [ ! -e "${COMPILED_FILE}" ] || [ "${PLUGIN_FILE:A}" -nt "${COMPILED_FILE}" ];
     fi
 
     PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" > "${COMPILED_FILE}"
+
+    (
+        autoload -U zrecompile
+        local file
+        for file in $CACHE_FOLDER/**/*.zsh{,-theme}(N); do
+            zrecompile -pq "${file}"
+        done
+    )
 fi
 
 source "${COMPILED_FILE}"
