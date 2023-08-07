@@ -4,7 +4,6 @@
 @load git https://github.com/matthewfranglen/gitflow-avh
 @load git https://github.com/supercrabtree/k
 @load git https://github.com/ytdl-org/youtube-dl
-@load git https://gitlab.com/matthewfranglen/format-python
 @load git https://gitlab.com/matthewfranglen/git-stashes
 @load git https://gitlab.com/matthewfranglen/random
 
