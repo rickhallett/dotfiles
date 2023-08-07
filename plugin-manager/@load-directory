@@ -1,0 +1,31 @@
+#!/usr/bin/zsh
+#
+# This loads a dependency from a local folder.
+# It will put the root folder on the path, and add any autocomplete folder to autocomplete.
+#
+# Example:
+#
+# @load directory ~/.cache/dotfiles/repos/releases/sharkdp--fd
+#
+# The commands to execute will be echoed to stdout.
+
+set -euo pipefail
+
+readonly FOLDER_NAME="${1:A}"
+
+FOUND=0
+for file in "${FOLDER_NAME}"/*.plugin.zsh(N); do
+    FOUND=1
+    echo "source '${file}'"
+done
+
+if [ ${FOUND} -eq 0 ]; then
+    if [ -e "${FOLDER_NAME}/autocomplete" ]; then
+        echo 'export FPATH="${FPATH}:'"${FOLDER_NAME}/autocomplete"'"'
+    fi
+    if [ -n "$(find "${FOLDER_NAME}" -maxdepth 1 -type f -executable)" ]; then
+        echo 'export PATH="${PATH}:'"${FOLDER_NAME}"'"'
+    fi
+fi
+
+unset FOUND

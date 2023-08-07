@@ -1,16 +1,18 @@
-Tarrasch/zsh-colors
-Tarrasch/zsh-functional
+@load git https://github.com/Tarrasch/zsh-colors
+@load git https://github.com/Tarrasch/zsh-functional
+@load git https://github.com/bobthecow/git-flow-completion
+@load git https://github.com/matthewfranglen/gitflow-avh
+@load git https://github.com/supercrabtree/k
+@load git https://gitlab.com/matthewfranglen/git-stashes
+@load git https://gitlab.com/matthewfranglen/random
 
-bobthecow/git-flow-completion
+@load git https://github.com/zsh-users/zsh-autosuggestions
+@load git https://github.com/zsh-users/zsh-history-substring-search
+@load git https://github.com/zsh-users/zsh-syntax-highlighting
 
-https://gitlab.com/matthewfranglen/format-python
-https://gitlab.com/matthewfranglen/git-stashes
-https://gitlab.com/matthewfranglen/random
-matthewfranglen/gitflow-avh
+@load github-release sharkdp/fd terms:x86_64,linux,musl
+@load github-release variadico/noti terms:linux
+@load github-release BurntSushi/ripgrep terms:linux,musl
+@load github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
 
-supercrabtree/k
-ytdl-org/youtube-dl
-
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-history-substring-search
-zsh-users/zsh-syntax-highlighting
+# vim: set ai et sw=4 syntax=zsh :

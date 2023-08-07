@@ -1,0 +1,24 @@
+#!/usr/bin/zsh
+#
+# This is the entrypoint for the plugin manager initialization.
+# This takes a subcommand as the following terms, and then invokes it.
+# It is that command which generates the output.
+#
+# This leads to a command which is like:
+#
+# @load dotfile python
+#
+# Which would invoke
+#
+# @load-dotfile python
+#
+# The commands to execute will be echoed to stdout.
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h}"
+readonly COMMAND="${PLUGIN_FOLDER}/@load-${1?provide the command to invoke}"
+
+shift
+
+"${COMMAND}" "$@"
