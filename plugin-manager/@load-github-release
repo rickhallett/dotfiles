@@ -86,7 +86,11 @@ done
         )
     fi
 ) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
-success "${REPO_NAME}" >&2
+if [ $? -eq 0 ]; then
+    success "${REPO_NAME}" >&2
+else
+    fail "${REPO_NAME}" >&2
+fi
 
 "${PLUGIN_FOLDER}/@load" directory "${FOLDER_NAME}"
 if [ -n "${EXEC}" ]; then
