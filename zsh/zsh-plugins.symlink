@@ -1,16 +1,16 @@
-@load git https://github.com/CJ-Systems/gitflow-cjs
 @load git https://github.com/Tarrasch/zsh-colors
 @load git https://github.com/Tarrasch/zsh-functional
-@load git https://github.com/bobthecow/git-flow-completion
 @load git https://github.com/supercrabtree/k
 @load git https://gitlab.com/matthewfranglen/git-stashes
 @load git https://gitlab.com/matthewfranglen/random
 
-@load github-release sharkdp/fd terms:x86_64,linux,musl
-@load github-release BurntSushi/ripgrep terms:linux,musl
-@load github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
+@load if linux then git https://github.com/CJ-Systems/gitflow-cjs
+@load if linux then git https://github.com/bobthecow/git-flow-completion
 
-@load if not ssh then github-release variadico/noti terms:linux
+@load if linux then github-release sharkdp/fd terms:x86_64,linux,musl
+@load if linux then github-release BurntSushi/ripgrep terms:linux,musl
+@load if linux then github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
+@load if linux then if not ssh then github-release variadico/noti terms:linux
 
 @load git https://github.com/zsh-users/zsh-autosuggestions
 @load git https://github.com/zsh-users/zsh-history-substring-search
