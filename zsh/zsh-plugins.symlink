@@ -10,7 +10,7 @@
 @load github-release BurntSushi/ripgrep terms:linux,musl
 @load github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
 
-@load if-not ssh then github-release variadico/noti terms:linux
+@load if not ssh then github-release variadico/noti terms:linux
 
 @load git https://github.com/zsh-users/zsh-autosuggestions
 @load git https://github.com/zsh-users/zsh-history-substring-search
