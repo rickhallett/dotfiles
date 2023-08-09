@@ -19,9 +19,12 @@ shift
 readonly FOLDER_NAME="$(git_repo_folder "${URL}")"
 readonly LOG_FILE="$(log_file "${FOLDER_NAME}")"
 
-(
-    if [ ! -e "${FOLDER_NAME}" ]; then
-        git clone "${URL}" "${FOLDER_NAME}"
+if [ ! -e "${FOLDER_NAME}" ]; then
+    if git clone "${URL}" "${FOLDER_NAME}" >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"; then
+        success "installed git ${URL}" >&2
+    else
+        fail "installed git ${URL}" >&2
     fi
-) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
-success "installed git ${URL}" >&2
+else
+    skip "installed git ${URL}" >&2
+fi

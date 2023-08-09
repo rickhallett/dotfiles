@@ -11,11 +11,15 @@ source "${PLUGIN_FOLDER}/lib.sh"
 readonly NAME="${1?You must provide the pypi package name}"
 shift
 
-if make_local_bin && \
-        install_pip && \
-        install_pipx && \
-        pipx install "${NAME}"; then
-    success "installed pipx ${NAME}" >&2
+if which pipx >/dev/null 2>&1 && pipx list | awk ' /package/ { print $2 } ' | grep "${NAME}"; then
+    skip "installed pipx ${NAME}" >&2
 else
-    fail "installed pipx ${NAME}" >&2
+    if make_local_bin && \
+            install_pip && \
+            install_pipx && \
+            pipx install "${NAME}"; then
+        success "installed pipx ${NAME}" >&2
+    else
+        fail "installed pipx ${NAME}" >&2
+    fi
 fi
