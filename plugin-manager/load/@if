@@ -5,6 +5,8 @@
 # The format is as follows:
 #
 # @load if ssh x86_64 then directory python
+# @load if ! ssh x86_64 then directory python
+# @load if not ssh x86_64 then directory python
 #
 # This will only run the @load-directory python if accessed over ssh and on a linux machine.
 # These are the available tests:
@@ -22,6 +24,19 @@ set -euo pipefail
 
 readonly PLUGIN_FOLDER="${0:A:h}"
 
+if [ "${1}" = "!" ] || [ "${1}" = "not" ]; then
+    shift
+    IS_NOT=1
+    is_not_uname() {
+        [ "$(uname --machine)" = "${1}" ]
+    }
+else
+    IS_NOT=0
+    is_not_uname() {
+        [ "$(uname --machine)" != "${1}" ]
+    }
+fi
+
 IS_SSH=0
 for command in "$@"; do
     shift
@@ -30,12 +45,12 @@ for command in "$@"; do
             IS_SSH=1
             ;;
         linux)
-            if [ "$(uname --machine)" != "x86_64" ]; then
+            if is_not_uname "x86_64"; then
                 exit
             fi
             ;;
-        termux)
-            if [ "$(uname --machine)" != "aarch64" ]; then
+        android)
+            if is_not_uname "aarch64"; then
                 exit
             fi
             ;;
@@ -50,12 +65,23 @@ for command in "$@"; do
 done
 
 if [ ${IS_SSH} -eq 1 ]; then
-    echo 'if [ -n "${SSH_CONNECTION}" ]; then'
+    if [ ${IS_NOT} -eq 0 ]; then
+        echo 'if [ -v SSH_CONNECTION ]; then'
+    else
+        echo 'if [ ! -v SSH_CONNECTION ]; then'
+    fi
 fi
 
-readonly COMMAND="${PLUGIN_FOLDER}/@load-${1?provide the command to invoke}"
+readonly COMMAND="${1?provide the command to invoke}"
 shift
-"${COMMAND}" "$@"
+
+if [ "${COMMAND}" = "if" ]; then
+    FILE="${PLUGIN_FOLDER}/@if"
+else
+    FILE="${PLUGIN_FOLDER}/@${COMMAND}"
+fi
+
+"${FILE}" "$@"
 
 if [ ${IS_SSH} -eq 1 ]; then
     echo 'fi'

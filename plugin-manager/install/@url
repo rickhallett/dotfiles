@@ -1,0 +1,34 @@
+#!/usr/bin/zsh
+#
+# This installs a script from a url.
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h:h}"
+readonly DOTFILES_FOLDER="${0:A:h:h:h}"
+
+source "${PLUGIN_FOLDER}/lib.sh"
+source "${DOTFILES_FOLDER}/script/lib.sh"
+
+readonly URL="${1?You must provide the url}"
+shift
+
+readonly NAME="$(read_tag name "$@")"
+if [ "${NAME}" = "" ]; then
+    echo "You must provide the name tag for url installs" >&2
+    exit 1
+fi
+
+readonly COMMAND_FILE="${HOME}/.local/bin/${NAME}"
+if [ ! -e "${COMMAND_FILE}" ]; then
+    if get_url_to_file "${URL}" "${COMMAND_FILE}"; then
+        chmod 755 "${COMMAND_FILE}"
+        success "installed url ${URL}" >&2
+    else
+        fail "installed url ${URL}" >&2
+        cat "${LOG_FILE}.err" >&2
+        echo >&2
+    fi
+else
+    skip "installed url ${URL}" >&2
+fi

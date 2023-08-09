@@ -1,0 +1,24 @@
+#!/usr/bin/zsh
+#
+# This will execute the install.sh script of the dotfile directory if it is present.
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h:h}"
+readonly DOTFILES_FOLDER="${0:A:h:h:h}"
+
+source "${PLUGIN_FOLDER}/lib.sh"
+source "${DOTFILES_FOLDER}/script/lib.sh"
+
+readonly FOLDER="${DOTFILES_FOLDER}/${1?provide the folder to use}"
+readonly LOG_FILE="$(log_file "${FOLDER}")"
+
+if [ -e "${FOLDER}/install.sh" ]; then
+    if "${FOLDER}/install.sh" >"${LOG_FILE}.log" 2>"${LOG_FILE}.err"; then
+        success "installed dotfile ${FOLDER}" >&2
+    else
+        fail "installed dotfile ${FOLDER}" >&2
+        cat "${LOG_FILE}.err" >&2
+        echo >&2
+    fi
+fi

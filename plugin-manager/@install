@@ -1,18 +1,16 @@
 #!/usr/bin/zsh
 #
-# This is the entrypoint for the plugin manager initialization.
+# This is the entrypoint for the plugin manager installation.
 # This takes a subcommand as the following terms, and then invokes it.
-# It is that command which generates the output.
+# It is that command which installs the dependency.
 #
 # This leads to a command which is like:
 #
-# @load dotfile python
+# @install dotfile python
 #
 # Which would invoke
 #
-# load/@dotfile python
-#
-# The commands to execute will be echoed to stdout.
+# install/@dotfile python
 
 set -euo pipefail
 
@@ -20,4 +18,4 @@ readonly PLUGIN_FOLDER="${0:A:h}"
 readonly COMMAND="${1?provide the command to invoke}"
 shift
 
-"${PLUGIN_FOLDER}/load/@${COMMAND}" "$@"
+"${PLUGIN_FOLDER}/install/@${COMMAND}" "$@"

@@ -1,0 +1,32 @@
+#!/usr/bin/zsh
+#
+# This installs a dependency from a git repo.
+# This will download the file to the xdg cache.
+#
+# This takes the most recent release that matches the patterns, downloads and decompresses it.
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h:h}"
+readonly DOTFILES_FOLDER="${0:A:h:h:h}"
+
+source "${PLUGIN_FOLDER}/lib.sh"
+source "${DOTFILES_FOLDER}/script/lib.sh"
+
+readonly URL="${1?You must provide the https url to use}"
+shift
+
+readonly FOLDER_NAME="$(git_repo_folder "${URL}")"
+readonly LOG_FILE="$(log_file "${FOLDER_NAME}")"
+
+if [ ! -e "${FOLDER_NAME}" ]; then
+    if git clone "${URL}" "${FOLDER_NAME}" >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"; then
+        success "installed git ${URL}" >&2
+    else
+        fail "installed git ${URL}" >&2
+        cat "${LOG_FILE}.err" >&2
+        echo >&2
+    fi
+else
+    skip "installed git ${URL}" >&2
+fi

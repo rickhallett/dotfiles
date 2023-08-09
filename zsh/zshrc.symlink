@@ -138,25 +138,8 @@ startup::log "Sourced oh-my-zsh"
 source ~/.fzf.zsh
 startup::log "Sourced fzf"
 
-eval "$(zoxide init zsh --hook pwd)"
-startup::log "Sourced zoxide"
-
-# all of our zsh files
-typeset -U config_files
-config_files=($(find ${DOTFILES}/ -type f -name '*.zsh' -not -path "${DOTFILES}/zsh/*"))
-
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}
-do
-  source $file
-done
-
-# load everything but the path
-# autocompletion has already loaded at this point
-for file in ${config_files:#*/path.zsh}
-do
-  source $file
-done
+source "${DOTFILES}/zsh/plugins.sh"
+startup::log "Sourced plugins"
 
 if [ -n "${_DEBUG_STARTUP}" ]; then
     zprof

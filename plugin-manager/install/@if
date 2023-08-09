@@ -1,17 +1,19 @@
 #!/usr/bin/zsh
 #
 # This is a conditional executor which takes a few keywords.
-# The subsequent command will only be executed if every keyword test FAILS.
+# The subsequent command will only be executed if every keyword test passes.
 # The format is as follows:
 #
 # @load if ssh x86_64 then directory python
+# @load if ! ssh x86_64 then directory python
+# @load if not ssh x86_64 then directory python
 #
 # This will only run the @load-directory python if accessed over ssh and on a linux machine.
 # These are the available tests:
 #
-#  * ssh - is the current connection local (over ssh)
-#  * linux - is the `uname --machine` NOT x86_64
-#  * termux - is the `uname --machine` NOT aarch64
+#  * ssh - is the current connection remote (over ssh)
+#  * linux - is the `uname --machine` x86_64
+#  * termux - is the `uname --machine` aarch64
 #
 # Since the machine architecture is static that is tested once and discarded.
 # The ssh connection involves wrapping the commands that would be executed.
@@ -22,20 +24,38 @@ set -euo pipefail
 
 readonly PLUGIN_FOLDER="${0:A:h}"
 
-IS_SSH=0
+if [ "${1}" = "!" ] || [ "${1}" = "not" ]; then
+    shift
+    is_not_ssh() {
+        [ ! -v SSH_CONNECTION ]
+    }
+    is_not_uname() {
+        [ "$(uname --machine)" = "${1}" ]
+    }
+else
+    is_not_ssh() {
+        [ -v SSH_CONNECTION ]
+    }
+    is_not_uname() {
+        [ "$(uname --machine)" != "${1}" ]
+    }
+fi
+
 for command in "$@"; do
     shift
     case $command in
         ssh)
-            IS_SSH=1
-            ;;
-        linux)
-            if [ "$(uname --machine)" == "x86_64" ]; then
+            if is_not_ssh; then
                 exit
             fi
             ;;
-        termux)
-            if [ "$(uname --machine)" == "aarch64" ]; then
+        linux)
+            if is_not_uname "x86_64"; then
+                exit
+            fi
+            ;;
+        android)
+            if is_not_uname "aarch64"; then
                 exit
             fi
             ;;
@@ -49,14 +69,7 @@ for command in "$@"; do
     esac
 done
 
-if [ ${IS_SSH} -eq 1 ]; then
-    echo 'if [ -z "${SSH_CONNECTION}" ]; then'
-fi
-
-readonly COMMAND="${PLUGIN_FOLDER}/@load-${1?provide the command to invoke}"
+readonly COMMAND="${1?provide the command to invoke}"
 shift
-"${COMMAND}" "$@"
 
-if [ ${IS_SSH} -eq 1 ]; then
-    echo 'fi'
-fi
+"${PLUGIN_FOLDER}/@${COMMAND}" "$@"
