@@ -138,9 +138,6 @@ startup::log "Sourced oh-my-zsh"
 source ~/.fzf.zsh
 startup::log "Sourced fzf"
 
-eval "$(zoxide init zsh --hook pwd)"
-startup::log "Sourced zoxide"
-
 # all of our zsh files
 typeset -U config_files
 config_files=($(find ${DOTFILES}/ -type f -name '*.zsh' -not -path "${DOTFILES}/zsh/*"))
