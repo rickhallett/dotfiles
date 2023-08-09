@@ -9,9 +9,7 @@ export EDITOR=vim
 export SVN_EDITOR=vim
 export GIT_EDITOR=vim
 
-if [ "$(uname -m)" = "aarch64" ]; then
-    export LC_ALL=LC_ALL
-else
+if [ "$(uname -m)" != "aarch64" ]; then
     export LC_ALL="en_GB.utf8"
 fi
 
