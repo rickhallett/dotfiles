@@ -9,7 +9,11 @@ export EDITOR=vim
 export SVN_EDITOR=vim
 export GIT_EDITOR=vim
 
-export LC_ALL="en_GB.utf8"
+if [ "$(uname -m)" = "aarch64" ]; then
+    export LC_ALL=LC_ALL
+else
+    export LC_ALL="en_GB.utf8"
+fi
 
 # https://wiki.ubuntu.com/DesktopExperienceTeam/ApplicationMenu
 # Disables global menu for everything.
