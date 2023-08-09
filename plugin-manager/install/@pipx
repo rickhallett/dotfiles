@@ -5,8 +5,10 @@
 set -euo pipefail
 
 readonly PLUGIN_FOLDER="${0:A:h:h}"
+readonly DOTFILES_FOLDER="${0:A:h:h:h}"
 
 source "${PLUGIN_FOLDER}/lib.sh"
+source "${DOTFILES_FOLDER}/script/lib.sh"
 
 readonly NAME="${1?You must provide the pypi package name}"
 shift
