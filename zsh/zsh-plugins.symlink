@@ -7,6 +7,8 @@
 @load if linux then git https://github.com/CJ-Systems/gitflow-cjs
 @load if linux then git https://github.com/bobthecow/git-flow-completion
 
+@load if linux then url https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein name:lein
+
 @load if linux then github-release sharkdp/fd terms:x86_64,linux,musl
 @load if linux then github-release BurntSushi/ripgrep terms:linux,musl
 @load if linux then github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
