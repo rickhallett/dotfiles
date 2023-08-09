@@ -38,7 +38,10 @@ chsh -s zsh
 
 wget https://its-pointless.github.io/setup-pointless-repo.sh
 bash setup-pointless-repo.sh
-pkg install scipy numpy matplotlib
+pkg install --yes \
+    scipy \
+    numpy \
+    matplotlib
 
 # this requires rust to compile maturin, can fail with a timeout
 pip install jupyter
