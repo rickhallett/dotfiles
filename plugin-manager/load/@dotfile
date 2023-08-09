@@ -20,7 +20,7 @@
 
 set -euo pipefail
 
-readonly DOTFILE_FOLDER="${0:A:h:h}"
+readonly DOTFILE_FOLDER="${0:A:h:h:h}"
 readonly FOLDER="${DOTFILE_FOLDER}/${1?provide the folder to use}"
 
 if [ ! -d "${FOLDER}" ]; then

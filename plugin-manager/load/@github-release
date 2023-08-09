@@ -19,8 +19,8 @@
 
 set -euo pipefail
 
-readonly PLUGIN_FOLDER="${0:A:h}"
-readonly DOTFILES_FOLDER="${0:A:h:h}"
+readonly PLUGIN_FOLDER="${0:A:h:h}"
+readonly DOTFILES_FOLDER="${0:A:h:h:h}"
 
 source "${DOTFILES_FOLDER}/script/lib.sh"
 

@@ -22,7 +22,7 @@
 
 set -euo pipefail
 
-readonly PLUGIN_FOLDER="${0:A:h}"
+readonly PLUGIN_FOLDER="${0:A:h:h}"
 
 if [ "${1}" = "!" ] || [ "${1}" = "not" ]; then
     shift
@@ -66,13 +66,13 @@ done
 
 if [ ${IS_SSH} -eq 1 ]; then
     if [ ${IS_NOT} -eq 0 ]; then
-        echo 'if [ -n "${SSH_CONNECTION}" ]; then'
+        echo 'if [ -v SSH_CONNECTION ]; then'
     else
-        echo 'if [ -z "${SSH_CONNECTION}" ]; then'
+        echo 'if [ ! -v SSH_CONNECTION ]; then'
     fi
 fi
 
-readonly COMMAND="${PLUGIN_FOLDER}/@load-${1?provide the command to invoke}"
+readonly COMMAND="${PLUGIN_FOLDER}/load/@${1?provide the command to invoke}"
 shift
 "${COMMAND}" "$@"
 

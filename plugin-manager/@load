@@ -17,7 +17,7 @@
 set -euo pipefail
 
 readonly PLUGIN_FOLDER="${0:A:h}"
-readonly COMMAND="${PLUGIN_FOLDER}/@load-${1?provide the command to invoke}"
+readonly COMMAND="${PLUGIN_FOLDER}/load/@${1?provide the command to invoke}"
 
 shift
 
