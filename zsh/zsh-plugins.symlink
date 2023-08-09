@@ -1,8 +1,20 @@
-@load git https://github.com/Tarrasch/zsh-colors
-@load git https://github.com/Tarrasch/zsh-functional
-@load git https://github.com/supercrabtree/k
-@load git https://gitlab.com/matthewfranglen/git-stashes
-@load git https://gitlab.com/matthewfranglen/random
+@do dotfile clojure
+@do dotfile docker
+@do dotfile fonts
+@do dotfile git
+@do dotfile java
+@do dotfile javascript
+@do dotfile kitty
+@do dotfile logs
+@do dotfile plugin-manager
+@do dotfile postgres
+@do dotfile powerline
+@do dotfile puppet
+@do dotfile python
+@do dotfile script
+@do dotfile tmux
+@do dotfile vim
+@do dotfile zsh
 
 @do git https://github.com/Tarrasch/zsh-colors
 @do git https://github.com/Tarrasch/zsh-functional
