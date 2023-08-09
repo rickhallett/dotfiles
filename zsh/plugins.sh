@@ -4,7 +4,7 @@ _DEBUG_PLUGINS=
 
 function install_plugins() {
     plugin::log "Starting..."
-    source "${DOTFILES}/plugin-manager/@init" load
+    source "${DOTFILES}/plugin-manager/@load-all"
     plugin::log "Applied plugins"
 
     # Set the autocomplete color for zsh-autocomplete.

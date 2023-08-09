@@ -5,4 +5,4 @@
 set -euo pipefail
 
 readonly DOTFILES="${0:A:h:h}"
-"${DOTFILES}/plugin-manager/@init" install
+"${DOTFILES}/plugin-manager/@install-all"
