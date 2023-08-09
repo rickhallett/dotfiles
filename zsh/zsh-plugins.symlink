@@ -10,6 +10,7 @@
 @load if linux then github-release sharkdp/fd terms:x86_64,linux,musl
 @load if linux then github-release BurntSushi/ripgrep terms:linux,musl
 @load if linux then github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
+@load if linux then github-release mislav/hub terms:amd64,linux
 @load if linux then if not ssh then github-release variadico/noti terms:linux
 
 @load git https://github.com/zsh-users/zsh-autosuggestions
