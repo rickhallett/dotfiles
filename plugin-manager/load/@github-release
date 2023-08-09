@@ -22,45 +22,19 @@ set -euo pipefail
 readonly PLUGIN_FOLDER="${0:A:h:h}"
 readonly DOTFILES_FOLDER="${0:A:h:h:h}"
 
+source "${PLUGIN_FOLDER}/lib.sh"
 source "${DOTFILES_FOLDER}/script/lib.sh"
 
-readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
-readonly RELEASE_CACHE_FOLDER="${CACHE_FOLDER}/repos/releases"
-
 readonly REPO_NAME="${1?You must provide the repo to use}"
-readonly NAME="${REPO_NAME:gs#/#--#:gs#:##}"
-readonly FOLDER_NAME="${RELEASE_CACHE_FOLDER}/${NAME}"
 shift
 
-readonly LOG_FOLDER="${CACHE_FOLDER}/logs"
-if [ ! -e "${LOG_FOLDER}" ]; then
-    mkdir "${LOG_FOLDER}"
-fi
-readonly LOG_FILE="${LOG_FOLDER}/${NAME}"
-
-TERMS=""
-EXEC=""
-for argument in "$@"; do
-    case $argument in
-        terms:*)
-            TERMS="${argument/*:}"
-            ;;
-        exec:*)
-            EXEC="${argument/*:}"
-            ;;
-        *)
-            echo "Unknown argument: ${argument}" >&2
-            exit 1
-            ;;
-    esac
-done
+readonly FOLDER_NAME="$(github_release_folder "${REPO_NAME}")"
+readonly LOG_FILE="$(log_file "${FOLDER_NAME}")"
+readonly TERMS="$(read_tag terms "$@")"
+readonly EXEC="$(read_tag exec "$@")"
 
 (
     if [ ! -e "${FOLDER_NAME}" ]; then
-        if [ ! -e "${RELEASE_CACHE_FOLDER}" ]; then
-            mkdir -p "${RELEASE_CACHE_FOLDER}"
-        fi
-
         readonly TEMP_DIR="$(mktemp -d)"
         trap "rm -rf '${TEMP_DIR}'" HUP INT QUIT
 
