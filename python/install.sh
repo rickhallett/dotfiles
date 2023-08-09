@@ -12,12 +12,7 @@ install () {
         return ${STATUS_ERROR}
     fi
 
-    install_pip          || return ${STATUS_ERROR}
     install_pyenv        || return ${STATUS_ERROR}
-    install_pipx         || return ${STATUS_ERROR}
-    install_pipenv       || return ${STATUS_ERROR}
-    install_poetry       || return ${STATUS_ERROR}
-    install_cookiecutter || return ${STATUS_ERROR}
     install_rust         || return ${STATUS_ERROR}
 
     return ${STATUS_OK}
@@ -32,18 +27,6 @@ install_pyenv () {
     then
         git clone --quiet https://github.com/pyenv/pyenv-virtualenv.git "${PYENV_VIRTUALENV_FOLDER}"
     fi
-}
-
-install_pipenv () {
-    pipx install pipenv
-}
-
-install_poetry () {
-    pipx install poetry
-}
-
-install_cookiecutter () {
-    pipx install cookiecutter
 }
 
 install_rust () {

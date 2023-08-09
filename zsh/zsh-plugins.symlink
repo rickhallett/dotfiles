@@ -10,6 +10,10 @@
 @load if linux then url https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein name:lein
 
 @load if linux then pipx docker-compose
+@load if linux then pipx powerline-status
+@load if linux then pipx pipenv
+@load if linux then pipx poetry
+@load if linux then pipx cookiecutter
 
 @load if linux then github-release sharkdp/fd terms:x86_64,linux,musl
 @load if linux then github-release BurntSushi/ripgrep terms:linux,musl
