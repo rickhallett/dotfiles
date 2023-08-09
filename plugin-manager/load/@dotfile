@@ -35,7 +35,7 @@ if [ -e "${FOLDER}/path.zsh" ]; then
     echo "source '${FOLDER}/path.zsh'"
 fi
 
-for file in ${FOLDER}/*.zsh; do
+for file in ${FOLDER}/*.zsh(N); do
     if [ "${file:t}" = "path.zsh" ]; then
         continue
     fi
