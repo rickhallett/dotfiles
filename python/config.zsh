@@ -1,4 +1,6 @@
-export PIP_REQUIRE_VIRTUALENV=true
+if [ "$(uname -m)" != "aarch64" ]; then
+    export PIP_REQUIRE_VIRTUALENV=true
+fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export CONDA_INITIALIZED=
 export PATH="${PATH}:${HOME}/.cargo/bin"
