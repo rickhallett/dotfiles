@@ -6,13 +6,15 @@ stty -ixon -ixoff
 # characters. Thanks to Michael Francis for this fix!
 # (Amazingly these bindings vary, so this may not work for you. inputrc is
 # supposed to be the source for this sort of thing)
-source =(
-    cat /etc/inputrc |
-        sed -ne '/^#/d'        \
-            -e 's/://'         \
-            -e 's/^/bindkey /' \
-            -e '/\(delete-char\|beginning-of-line\|end-of-line\)/p'
-)
+if [ -e /etc/inputrc ]; then
+    source =(
+        cat /etc/inputrc |
+            sed -ne '/^#/d'        \
+                -e 's/://'         \
+                -e 's/^/bindkey /' \
+                -e '/\(delete-char\|beginning-of-line\|end-of-line\)/p'
+    )
+fi
 
 # This allows control-r to be used to perform a reverse search
 bindkey '^R' history-incremental-search-backward
