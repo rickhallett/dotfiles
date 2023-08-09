@@ -1,0 +1,21 @@
+#!/usr/bin/zsh
+#
+# This installs a dependency from pypi using pipx.
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h:h}"
+
+source "${PLUGIN_FOLDER}/lib.sh"
+
+readonly NAME="${1?You must provide the pypi package name}"
+shift
+
+if make_local_bin && \
+        install_pip && \
+        install_pipx && \
+        pipx install "${NAME}"; then
+    success "pipx ${NAME}" >&2
+else
+    fail "pipx ${NAME}" >&2
+fi
