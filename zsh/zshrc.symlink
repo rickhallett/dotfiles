@@ -5,7 +5,9 @@ if [ -n "${_DEBUG_STARTUP}" ]; then
     zmodload zsh/zprof
 fi
 
-source /etc/environment
+if [ -e /etc/environment ]; then
+    source /etc/environment
+fi
 
 function debug::log {
     local prefix=$1
