@@ -43,7 +43,7 @@ if [ "${COMMAND_PREFIX}" = "load" ]; then
     fi
     source "${COMPILED_FILE}"
 elif [ "${COMMAND_PREFIX}" = "install" ]; then
-    COMMAND_PREFIX=${COMMAND_PREFIX} PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}"
+    COMMAND_PREFIX=${COMMAND_PREFIX} PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" > /tmp/plugins.log
 fi
 
 if [ "${_CLEAR_ERREXIT}" = "1" ]; then

@@ -5,5 +5,4 @@
 set -euo pipefail
 
 readonly DOTFILES="${0:A:h:h}"
-echo ${DOTFILES}
 "${DOTFILES}/plugin-manager/@init" install
