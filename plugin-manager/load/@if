@@ -78,7 +78,7 @@ shift
 if [ "${COMMAND}" = "if" ]; then
     FILE="${PLUGIN_FOLDER}/@if"
 else
-    FILE="${PLUGIN_FOLDER}/${COMMAND_PREFIX}/@${COMMAND}"
+    FILE="${PLUGIN_FOLDER}/@${COMMAND}"
 fi
 
 "${FILE}" "$@"

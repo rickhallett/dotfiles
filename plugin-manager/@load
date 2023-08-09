@@ -20,10 +20,4 @@ readonly PLUGIN_FOLDER="${0:A:h}"
 readonly COMMAND="${1?provide the command to invoke}"
 shift
 
-if [ "${COMMAND}" = "if" ]; then
-    FILE="${PLUGIN_FOLDER}/@if"
-else
-    FILE="${PLUGIN_FOLDER}/load/@${COMMAND}"
-fi
-
-COMMAND_PREFIX=load "${FILE}" "$@"
+"${PLUGIN_FOLDER}/load/@${COMMAND}" "$@"

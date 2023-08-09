@@ -18,10 +18,4 @@ readonly PLUGIN_FOLDER="${0:A:h}"
 readonly COMMAND="${1?provide the command to invoke}"
 shift
 
-if [ "${COMMAND}" = "if" ]; then
-    FILE="${PLUGIN_FOLDER}/@if"
-else
-    FILE="${PLUGIN_FOLDER}/install/@${COMMAND}"
-fi
-
-COMMAND_PREFIX=install "${FILE}" "$@"
+"${PLUGIN_FOLDER}/install/@${COMMAND}" "$@"
