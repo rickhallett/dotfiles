@@ -19,6 +19,8 @@ fi
 
 readonly PLUGIN_FOLDER="${0:A:h}"
 
+COMMAND_PREFIX="${1?Must provide action, load or install}"
+
 readonly PLUGIN_FILE="${HOME}/.zsh-plugins"
 readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
 readonly COMPILED_FILE="${CACHE_FOLDER}/commands.zsh"
@@ -28,9 +30,7 @@ if [ ! -e "${COMPILED_FILE}" ] || [ "${PLUGIN_FILE:A}" -nt "${COMPILED_FILE}" ];
         mkdir -p "${CACHE_FOLDER}"
     fi
 
-    # if command not correctly handled for install
-    # COMMAND_PREFIX=install PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" >/dev/null
-    COMMAND_PREFIX=load PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" > "${COMPILED_FILE}"
+    COMMAND_PREFIX=${COMMAND_PREFIX} PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" > "${COMPILED_FILE}"
 
     (
         autoload -U zrecompile
