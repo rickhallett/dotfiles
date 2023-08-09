@@ -29,7 +29,7 @@ if [ ! -e "${COMPILED_FILE}" ] || [ "${PLUGIN_FILE:A}" -nt "${COMPILED_FILE}" ];
     fi
 
     # if command not correctly handled for install
-    COMMAND_PREFIX=install PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" >/dev/null
+    # COMMAND_PREFIX=install PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" >/dev/null
     COMMAND_PREFIX=load PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" > "${COMPILED_FILE}"
 
     (
