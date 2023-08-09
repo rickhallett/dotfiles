@@ -72,7 +72,7 @@ if [ ${IS_SSH} -eq 1 ]; then
     fi
 fi
 
-readonly COMMAND="${PLUGIN_FOLDER}/load/@${1?provide the command to invoke}"
+readonly COMMAND="${PLUGIN_FOLDER}/${COMMAND_PREFIX}/@${1?provide the command to invoke}"
 shift
 "${COMMAND}" "$@"
 
