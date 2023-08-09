@@ -4,25 +4,31 @@
 @load git https://gitlab.com/matthewfranglen/git-stashes
 @load git https://gitlab.com/matthewfranglen/random
 
-@load if linux then git https://github.com/CJ-Systems/gitflow-cjs
-@load if linux then git https://github.com/bobthecow/git-flow-completion
+@do git https://github.com/Tarrasch/zsh-colors
+@do git https://github.com/Tarrasch/zsh-functional
+@do git https://github.com/supercrabtree/k
+@do git https://gitlab.com/matthewfranglen/git-stashes
+@do git https://gitlab.com/matthewfranglen/random
 
-@load if linux then url https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein name:lein
+@do if linux then git https://github.com/CJ-Systems/gitflow-cjs
+@do if linux then git https://github.com/bobthecow/git-flow-completion
 
-@load if linux then pipx docker-compose
-@load if linux then pipx powerline-status
-@load if linux then pipx pipenv
-@load if linux then pipx poetry
-@load if linux then pipx cookiecutter
+@do if linux then url https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein name:lein
 
-@load if linux then github-release sharkdp/fd terms:x86_64,linux,musl
-@load if linux then github-release BurntSushi/ripgrep terms:linux,musl
-@load if linux then github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
-@load if linux then github-release mislav/hub terms:amd64,linux
-@load if linux then if not ssh then github-release variadico/noti terms:linux
+@do if linux then pipx docker-compose
+@do if linux then pipx powerline-status
+@do if linux then pipx pipenv
+@do if linux then pipx poetry
+@do if linux then pipx cookiecutter
 
-@load git https://github.com/zsh-users/zsh-autosuggestions
-@load git https://github.com/zsh-users/zsh-history-substring-search
-@load git https://github.com/zsh-users/zsh-syntax-highlighting
+@do if linux then github-release sharkdp/fd terms:x86_64,linux,musl
+@do if linux then github-release BurntSushi/ripgrep terms:linux,musl
+@do if linux then github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
+@do if linux then github-release mislav/hub terms:amd64,linux
+@do if linux then if not ssh then github-release variadico/noti terms:linux
+
+@do git https://github.com/zsh-users/zsh-autosuggestions
+@do git https://github.com/zsh-users/zsh-history-substring-search
+@do git https://github.com/zsh-users/zsh-syntax-highlighting
 
 # vim: set ai et sw=4 syntax=zsh :

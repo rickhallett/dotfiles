@@ -1,0 +1,14 @@
+#!/usr/bin/zsh
+#
+# This is a resolver between @load and @install.
+# This takes a subcommand as the following terms, and then invokes it.
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h}"
+if [ ! -v COMMAND_PREFIX ]; then
+    echo "COMMAND_PREFIX must be set" 2>&1
+    exit 1
+fi
+
+"${PLUGIN_FOLDER}/@${COMMAND_PREFIX}" "$@"

@@ -28,7 +28,7 @@ if [ ! -e "${COMPILED_FILE}" ] || [ "${PLUGIN_FILE:A}" -nt "${COMPILED_FILE}" ];
         mkdir -p "${CACHE_FOLDER}"
     fi
 
-    PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" > "${COMPILED_FILE}"
+    COMMAND_PREFIX=load PATH="${PLUGIN_FOLDER}:${PATH}" "${PLUGIN_FILE}" > "${COMPILED_FILE}"
 
     (
         autoload -U zrecompile
