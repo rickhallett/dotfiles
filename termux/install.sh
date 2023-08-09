@@ -37,4 +37,4 @@ bash setup-pointless-repo.sh
 pkg install scipy numpy
 
 # this requires rust to compile maturin, can fail with a timeout
-LDFLAGS="-lm -lcompiler_rt" pip install jupyter
+pip install jupyter
