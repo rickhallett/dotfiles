@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 #
-# This loads a dependency from a github release.
+# This loads a dependency from a git repo.
 # This will download the file to the xdg cache.
 #
 # This takes the most recent release that matches the patterns, downloads and decompresses it.
