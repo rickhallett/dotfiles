@@ -10,7 +10,7 @@
 #
 # Which would invoke
 #
-# @load-dotfile python
+# load/@dotfile python
 #
 # The commands to execute will be echoed to stdout.
 
