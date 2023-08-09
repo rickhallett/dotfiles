@@ -22,7 +22,7 @@
 
 set -euo pipefail
 
-readonly PLUGIN_FOLDER="${0:A:h:h}"
+readonly PLUGIN_FOLDER="${0:A:h}"
 
 if [ "${1}" = "!" ] || [ "${1}" = "not" ]; then
     shift
@@ -72,9 +72,16 @@ if [ ${IS_SSH} -eq 1 ]; then
     fi
 fi
 
-readonly COMMAND="${PLUGIN_FOLDER}/${COMMAND_PREFIX}/@${1?provide the command to invoke}"
+readonly COMMAND="${1?provide the command to invoke}"
 shift
-"${COMMAND}" "$@"
+
+if [ "${COMMAND}" = "if" ]; then
+    FILE="${PLUGIN_FOLDER}/@if"
+else
+    FILE="${PLUGIN_FOLDER}/${COMMAND_PREFIX}/@${COMMAND}"
+fi
+
+"${FILE}" "$@"
 
 if [ ${IS_SSH} -eq 1 ]; then
     echo 'fi'
