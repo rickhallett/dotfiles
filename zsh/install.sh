@@ -49,7 +49,9 @@ install_oh_my_zsh () {
 }
 
 install_sdkman () {
-    curl -s "https://get.sdkman.io" | bash
+    if [ "$(uname -m)" = "x86_64" ]; then
+        curl -s "https://get.sdkman.io" | bash
+    fi
 }
 
 install_youtube_dl() {
