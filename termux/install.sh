@@ -9,6 +9,7 @@
 
 pkg update --yes
 pkg install --yes \
+    binutils-is-llvm \
     clang \
     curl \
     fftw \
@@ -16,8 +17,11 @@ pkg install --yes \
     git \
     jq \
     libcrypt \
+    libffi \
     libpng \
     libzmq \
+    llvm \
+    make \
     pkg-config \
     python \
     rsync \
