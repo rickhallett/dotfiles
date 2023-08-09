@@ -16,6 +16,7 @@ pkg install --yes \
     freetype \
     git \
     jq \
+    libandroid-execinfo \
     libcrypt \
     libffi \
     libpng \
