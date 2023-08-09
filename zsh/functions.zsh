@@ -7,6 +7,9 @@ function is_running_as () {
 }
 
 function load_ssh_agent () {
+    if [ "$(uname -m)" = "aarch64" ]; then
+        return
+    fi
     if [ -f ~/.agent.env ]
     then
         . ~/.agent.env > /dev/null
