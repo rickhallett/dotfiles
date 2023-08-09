@@ -27,6 +27,6 @@ readonly LOG_FILE="$(log_file "${FOLDER_NAME}")"
         git clone "${URL}" "${FOLDER_NAME}"
     fi
 ) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
-success "${URL}" >&2
+success "loaded git ${URL}" >&2
 
 "${PLUGIN_FOLDER}/@load" directory "${FOLDER_NAME}"

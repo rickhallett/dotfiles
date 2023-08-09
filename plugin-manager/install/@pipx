@@ -15,7 +15,7 @@ if make_local_bin && \
         install_pip && \
         install_pipx && \
         pipx install "${NAME}"; then
-    success "pipx ${NAME}" >&2
+    success "installed pipx ${NAME}" >&2
 else
-    fail "pipx ${NAME}" >&2
+    fail "installed pipx ${NAME}" >&2
 fi

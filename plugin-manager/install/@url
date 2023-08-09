@@ -24,3 +24,4 @@ if [ ! -e "${COMMAND_FILE}" ]; then
     get_url_to_file "${URL}" "${COMMAND_FILE}"
     chmod 755 "${COMMAND_FILE}"
 fi
+success "installed url ${URL}" >&2

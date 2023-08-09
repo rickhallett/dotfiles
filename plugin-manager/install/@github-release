@@ -55,7 +55,7 @@ readonly TERMS="$(read_tag terms "$@")"
     fi
 ) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
 if [ $? -eq 0 ]; then
-    success "${REPO_NAME}" >&2
+    success "installed github release ${REPO_NAME}" >&2
 else
-    fail "${REPO_NAME}" >&2
+    fail "installed github release ${REPO_NAME}" >&2
 fi

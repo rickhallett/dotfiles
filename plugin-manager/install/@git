@@ -24,4 +24,4 @@ readonly LOG_FILE="$(log_file "${FOLDER_NAME}")"
         git clone "${URL}" "${FOLDER_NAME}"
     fi
 ) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
-success "${URL}" >&2
+success "installed git ${URL}" >&2
