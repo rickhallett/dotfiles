@@ -24,6 +24,9 @@ function load_ssh_agent () {
 }
 
 function load_dbus_daemon () {
+    if ! which dbus-launch >/dev/null 2>&1; then
+        return
+    fi
     if [ -f ~/.dbus.env ]
     then
         . ~/.dbus.env > /dev/null
