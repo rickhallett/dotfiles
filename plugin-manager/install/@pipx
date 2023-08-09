@@ -12,14 +12,14 @@ source "${DOTFILES_FOLDER}/script/lib.sh"
 
 readonly NAME="${1?You must provide the pypi package name}"
 shift
+readonly LOG_FILE="$(log_file "${NAME}")"
 
 if which pipx >/dev/null 2>&1 && pipx list | awk ' /package/ { print $2 } ' | grep "${NAME}"; then
     skip "installed pipx ${NAME}" >&2
 else
-    if make_local_bin && \
-            install_pip && \
-            install_pipx && \
-            pipx install "${NAME}"; then
+    if (
+        make_local_bin && install_pip && install_pipx && pipx install "${NAME}"
+    ) >"${LOG_FILE}.log" 2>"${LOG_FILE}.err"; then
         success "installed pipx ${NAME}" >&2
     else
         fail "installed pipx ${NAME}" >&2
