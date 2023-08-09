@@ -1,0 +1,88 @@
+#!/usr/bin/zsh
+#
+# This loads a dependency from a github release.
+# This will download the file to the xdg cache.
+#
+# This takes the most recent release that matches the patterns, downloads and decompresses it.
+#
+# This uses tags to identify which release to use.
+# The terms: tag takes a comma separated list of words to look for in the filename of the release.
+#
+# Example:
+#
+# @install github-release sharkdp/fd terms:x86_64,linux,musl
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h:h}"
+readonly DOTFILES_FOLDER="${0:A:h:h:h}"
+
+source "${DOTFILES_FOLDER}/script/lib.sh"
+
+readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
+readonly RELEASE_CACHE_FOLDER="${CACHE_FOLDER}/repos/releases"
+
+readonly REPO_NAME="${1?You must provide the repo to use}"
+readonly NAME="${REPO_NAME:gs#/#--#:gs#:##}"
+readonly FOLDER_NAME="${RELEASE_CACHE_FOLDER}/${NAME}"
+shift
+
+readonly LOG_FOLDER="${CACHE_FOLDER}/logs"
+if [ ! -e "${LOG_FOLDER}" ]; then
+    mkdir "${LOG_FOLDER}"
+fi
+readonly LOG_FILE="${LOG_FOLDER}/${NAME}"
+
+TERMS=""
+EXEC=""
+for argument in "$@"; do
+    case $argument in
+        terms:*)
+            TERMS="${argument/*:}"
+            ;;
+        exec:*)
+            EXEC="${argument/*:}"
+            ;;
+        *)
+            echo "Unknown argument: ${argument}" >&2
+            exit 1
+            ;;
+    esac
+done
+
+(
+    if [ ! -e "${FOLDER_NAME}" ]; then
+        if [ ! -e "${RELEASE_CACHE_FOLDER}" ]; then
+            mkdir -p "${RELEASE_CACHE_FOLDER}"
+        fi
+
+        readonly TEMP_DIR="$(mktemp -d)"
+        trap "rm -rf '${TEMP_DIR}'" HUP INT QUIT
+
+        readonly RELEASE_URL="$(curl https://api.github.com/repos/${REPO_NAME}/releases/latest | python ${PLUGIN_FOLDER}/github_release.py "${TERMS}")"
+        (
+            cd "${TEMP_DIR}"
+            wget "${RELEASE_URL}"
+            tar xzf *.tar.gz
+            rm *.tar.gz
+
+            if [ $(ls | wc -l) -gt 1 ]; then
+                mkdir "${FOLDER_NAME}"
+                mv * "${FOLDER_NAME}"
+            else
+                FILE="$(ls)"
+                if [ -d "${FILE}" ]; then
+                    mv "${FILE}" "${FOLDER_NAME}"
+                else
+                    mkdir "${FOLDER_NAME}"
+                    mv "${FILE}" "${FOLDER_NAME}"
+                fi
+            fi
+        )
+    fi
+) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
+if [ $? -eq 0 ]; then
+    success "${REPO_NAME}" >&2
+else
+    fail "${REPO_NAME}" >&2
+fi

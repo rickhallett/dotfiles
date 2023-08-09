@@ -1,0 +1,12 @@
+#!/usr/bin/zsh
+#
+# This will execute the install.sh script of the dotfile directory if it is present.
+
+set -euo pipefail
+
+readonly DOTFILE_FOLDER="${0:A:h:h:h}"
+readonly FOLDER="${DOTFILE_FOLDER}/${1?provide the folder to use}"
+
+if [ -e "${FOLDER}/install.sh" ]; then
+    "${FOLDER}/install.sh"
+fi

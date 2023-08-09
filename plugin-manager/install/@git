@@ -1,0 +1,38 @@
+#!/usr/bin/zsh
+#
+# This installs a dependency from a git repo.
+# This will download the file to the xdg cache.
+#
+# This takes the most recent release that matches the patterns, downloads and decompresses it.
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h:h}"
+readonly DOTFILES_FOLDER="${0:A:h:h:h}"
+
+source "${DOTFILES_FOLDER}/script/lib.sh"
+
+readonly CACHE_FOLDER="${XDG_CACHE_DIR:-${HOME}/.cache}/dotfiles"
+readonly CLONE_CACHE_FOLDER="${CACHE_FOLDER}/repos/clones"
+
+readonly URL="${1?You must provide the https url to use}"
+readonly NAME="${URL:gs#/#--#:gs#:##}"
+readonly FOLDER_NAME="${CLONE_CACHE_FOLDER}/${NAME}"
+shift
+
+readonly LOG_FOLDER="${CACHE_FOLDER}/logs"
+if [ ! -e "${LOG_FOLDER}" ]; then
+    mkdir "${LOG_FOLDER}"
+fi
+readonly LOG_FILE="${LOG_FOLDER}/${NAME}"
+
+(
+    if [ ! -e "${FOLDER_NAME}" ]; then
+        if [ ! -e "${CLONE_CACHE_FOLDER}" ]; then
+            mkdir -p "${CLONE_CACHE_FOLDER}"
+        fi
+
+        git clone "${URL}" "${FOLDER_NAME}"
+    fi
+) >"${LOG_FILE}.out" 2>"${LOG_FILE}.err"
+success "${URL}" >&2
