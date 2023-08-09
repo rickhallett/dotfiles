@@ -1,0 +1,27 @@
+#!/usr/bin/zsh
+#
+# This is the entrypoint for the plugin manager installation.
+# This takes a subcommand as the following terms, and then invokes it.
+# It is that command which installs the dependency.
+#
+# This leads to a command which is like:
+#
+# @install dotfile python
+#
+# Which would invoke
+#
+# install/@dotfile python
+
+set -euo pipefail
+
+readonly PLUGIN_FOLDER="${0:A:h}"
+readonly COMMAND="${1?provide the command to invoke}"
+shift
+
+if [ "${COMMAND}" = "if" ]; then
+    FILE="${PLUGIN_FOLDER}/@if"
+else
+    FILE="${PLUGIN_FOLDER}/install/@${COMMAND}"
+fi
+
+COMMAND_PREFIX=install "${FILE}" "$@"
