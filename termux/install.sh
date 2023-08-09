@@ -6,6 +6,9 @@
 # pkg install git zsh
 # git clone https://gitlab.com/matthewfranglen/dotfiles
 # ln -s dotfiles .dotfiles
+#
+# If there are problems then the subreddit seems like a good place:
+# https://old.reddit.com/r/termux
 
 pkg update --yes
 pkg install --yes \
