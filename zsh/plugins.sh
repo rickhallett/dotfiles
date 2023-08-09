@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 _DEBUG_PLUGINS=
 
 function install_plugins() {
