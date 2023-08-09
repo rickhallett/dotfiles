@@ -138,22 +138,45 @@ startup::log "Sourced oh-my-zsh"
 source ~/.fzf.zsh
 startup::log "Sourced fzf"
 
-# all of our zsh files
-typeset -U config_files
-config_files=($(find ${DOTFILES}/ -type f -name '*.zsh' -not -path "${DOTFILES}/zsh/*"))
+_DEBUG_PLUGINS=
 
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}
-do
-  source $file
-done
+function install_plugins() {
+    plugin::log "Starting..."
+    source ~/.dotfiles/plugin-manager/@init
+    plugin::log "Applied plugins"
 
-# load everything but the path
-# autocompletion has already loaded at this point
-for file in ${config_files:#*/path.zsh}
-do
-  source $file
-done
+    # Set the autocomplete color for zsh-autocomplete.
+    # Has to be done after loading.
+    export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
+
+    if [ -e "${HOME}/.sdkman" ]; then
+        export SDKMAN_DIR="${HOME}/.sdkman"
+        [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+    fi
+}
+
+if [ -n "${_DEBUG_PLUGINS}" ]; then
+    PLUGIN_START_TIME="$(date "+%s.%N")"
+    PLUGIN_LAST_TIME="${PLUGIN_START_TIME}"
+
+    function plugin::log {
+        local current_time="$(date "+%s.%N")"
+        debug::log " - plugins" "${PLUGIN_START_TIME}" "${PLUGIN_LAST_TIME}" "${current_time}" "${1}"
+        PLUGIN_LAST_TIME="${current_time}"
+    }
+else
+    function plugin::log {
+
+    }
+fi
+
+install_plugins
+
+unfunction install_plugins
+unfunction plugin::log
+unset PLUGIN_START_TIME
+unset PLUGIN_LAST_TIME
+unset _DEBUG_PLUGINS
 
 if [ -n "${_DEBUG_STARTUP}" ]; then
     zprof
@@ -165,3 +188,6 @@ unset start_time
 unset last_time
 unset _DEBUG_STARTUP
 unfunction startup::log
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

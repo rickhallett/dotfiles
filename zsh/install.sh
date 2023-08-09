@@ -12,9 +12,6 @@ install () {
     install_fzf        || return ${STATUS_ERROR}
     install_oh_my_zsh  || return ${STATUS_ERROR}
     install_sdkman     || return ${STATUS_ERROR}
-    install_pipx       || return ${STATUS_ERROR}
-    install_youtube_dl || return ${STATUS_ERROR}
-    install_zoxide     || return ${STATUS_ERROR}
 }
 
 is_git_command_available () {
@@ -54,12 +51,6 @@ install_sdkman () {
     fi
 }
 
-install_youtube_dl() {
-    pipx install youtube-dl
-}
-
-install_zoxide() {
-    curl -sS https://webinstall.dev/zoxide | bash
-}
-
 install
+
+# vim: set ai et sw=4 syntax=zsh :

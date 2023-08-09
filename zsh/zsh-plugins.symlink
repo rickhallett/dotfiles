@@ -32,6 +32,7 @@
 @do if linux then pipx pipenv
 @do if linux then pipx poetry
 @do if linux then pipx cookiecutter
+@do if linux then pipx youtube-dl
 
 @do if linux then github-release sharkdp/fd terms:x86_64,linux,musl
 @do if linux then github-release BurntSushi/ripgrep terms:linux,musl
