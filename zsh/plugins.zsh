@@ -28,9 +28,7 @@ else
     }
 fi
 
-if which antibody >/dev/null; then
-    install_plugins
-fi
+install_plugins
 
 unfunction install_plugins
 unfunction plugin::log
