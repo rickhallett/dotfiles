@@ -139,6 +139,7 @@ source ~/.fzf.zsh
 startup::log "Sourced fzf"
 
 source "${DOTFILES}/zsh/plugins.sh"
+startup::log "Sourced plugins"
 
 if [ -n "${_DEBUG_STARTUP}" ]; then
     zprof
