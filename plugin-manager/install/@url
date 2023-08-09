@@ -26,6 +26,8 @@ if [ ! -e "${COMMAND_FILE}" ]; then
         success "installed url ${URL}" >&2
     else
         fail "installed url ${URL}" >&2
+        cat "${LOG_FILE}.err" >&2
+        echo >&2
     fi
 else
     skip "installed url ${URL}" >&2

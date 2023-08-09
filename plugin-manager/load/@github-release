@@ -64,6 +64,8 @@ if [ $? -eq 0 ]; then
     success "loaded github release ${REPO_NAME}" >&2
 else
     fail "loaded github release ${REPO_NAME}" >&2
+    cat "${LOG_FILE}.err" >&2
+    echo >&2
 fi
 
 "${PLUGIN_FOLDER}/@load" directory "${FOLDER_NAME}"

@@ -24,6 +24,8 @@ if [ ! -e "${FOLDER_NAME}" ]; then
         success "installed git ${URL}" >&2
     else
         fail "installed git ${URL}" >&2
+        cat "${LOG_FILE}.err" >&2
+        echo >&2
     fi
 else
     skip "installed git ${URL}" >&2
