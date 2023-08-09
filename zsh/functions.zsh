@@ -196,7 +196,7 @@ function youtube {
 
 
 # Don't dirty up the process tree on remote servers
-if [ -z $SSH_CONNECTION ]
+if [ ! -v SSH_CONNECTION ]
 then
     load_dbus_daemon
     load_ssh_agent
