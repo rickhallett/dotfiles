@@ -51,10 +51,15 @@ bash setup-pointless-repo.sh
 #     matplotlib
 # pkg install python-numpy
 
-# this requires rust to compile maturin, can fail with a timeout
 export MATHLIB="m"
 export LDFLAGS="-lpython3.11"
 pip install pandas numpy matplotlib
+
+# scipy doesn't install cleanly from pip
+# https://wiki.termux.com/wiki/Installing_Scipy_The_Easy_Way (missing hah)
+# the pointless repo has scipy
+
+# this requires rust to compile maturin, can fail with a timeout
 pip install jupyter
 
 termux-setup-storage
