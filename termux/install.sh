@@ -53,6 +53,7 @@ bash setup-pointless-repo.sh
 
 export MATHLIB="m"
 export LDFLAGS="-lpython3.11"
+pip install pandas
 pip install pandas numpy matplotlib
 
 # scipy doesn't install cleanly from pip
