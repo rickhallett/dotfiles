@@ -47,7 +47,7 @@ bash setup-pointless-repo.sh
 #     python-scipy \
 #     python-numpy \
 #     matplotlib
-pkg install python-numpy
+# pkg install python-numpy
 
 # this requires rust to compile maturin, can fail with a timeout
 export MATHLIB="m"
