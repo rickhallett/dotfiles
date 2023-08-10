@@ -14,6 +14,7 @@ pkg update --yes
 pkg install --yes \
     binutils-is-llvm \
     clang \
+    cmake \
     curl \
     fftw \
     freetype \
@@ -29,6 +30,7 @@ pkg install --yes \
     libzmq \
     llvm \
     make \
+    ninja \
     pkg-config \
     python \
     rsync \
