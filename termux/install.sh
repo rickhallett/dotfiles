@@ -22,7 +22,10 @@ pkg install --yes \
     libandroid-execinfo \
     libcrypt \
     libffi \
+    libiconv \
     libpng \
+    libxml2 \
+    libxslt \
     libzmq \
     llvm \
     make \
@@ -51,3 +54,5 @@ export MATHLIB="m"
 export LDFLAGS="-lpython3.11"
 pip install pandas numpy scipy matplotlib
 pip install jupyter
+
+termux-setup-storage
