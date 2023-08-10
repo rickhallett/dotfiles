@@ -30,6 +30,7 @@ pkg install --yes \
     python \
     rsync \
     rust \
+    vim \
     wget \
     which \
     zsh
