@@ -37,12 +37,17 @@ pkg install --yes \
 
 chsh -s zsh
 
+# need pandas, scipy, matplotlib to do stuff in jupyter
 wget https://its-pointless.github.io/setup-pointless-repo.sh
 bash setup-pointless-repo.sh
-pkg install --yes \
-    scipy \
-    numpy \
-    matplotlib
+# pkg install --yes \
+#     python-scipy \
+#     python-numpy \
+#     matplotlib
+pkg install python-numpy
 
 # this requires rust to compile maturin, can fail with a timeout
+export MATHLIB="m"
+export LDFLAGS="-lpython3.11"
+pip install pandas numpy scipy matplotlib
 pip install jupyter
