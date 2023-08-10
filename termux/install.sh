@@ -54,7 +54,7 @@ bash setup-pointless-repo.sh
 # this requires rust to compile maturin, can fail with a timeout
 export MATHLIB="m"
 export LDFLAGS="-lpython3.11"
-pip install pandas numpy scipy matplotlib
+pip install pandas numpy matplotlib
 pip install jupyter
 
 termux-setup-storage
