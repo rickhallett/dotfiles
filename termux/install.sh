@@ -12,8 +12,9 @@
 
 pkg update --yes
 pkg install --yes \
-    binutils-is-llvm \
+    autoconf \
     binutils \
+    binutils-is-llvm \
     clang \
     cmake \
     curl \
@@ -22,6 +23,7 @@ pkg install --yes \
     git \
     jq \
     libandroid-execinfo \
+    libandroid-spawn \
     libcrypt \
     libffi \
     libiconv \
@@ -39,6 +41,7 @@ pkg install --yes \
     vim \
     wget \
     which \
+    flang \
     zsh
 
 chsh -s zsh
@@ -53,13 +56,13 @@ bash setup-pointless-repo.sh
 # pkg install python-numpy
 
 export MATHLIB="m"
-export LDFLAGS="-lpython3.11"
-pip install pandas
-pip install pandas numpy matplotlib
+export LDFLAGS="-lpython3.11 -landroid-spawn"
+pip install pandas numpy
 
-# scipy doesn't install cleanly from pip
-# https://wiki.termux.com/wiki/Installing_Scipy_The_Easy_Way (missing hah)
-# the pointless repo has scipy
+pkg install patchelf
+pkg install matplotlib
+
+# scipy from it's pointless is for version 3.7 :( :(
 
 # this requires rust to compile maturin, can fail with a timeout
 pip install jupyter
