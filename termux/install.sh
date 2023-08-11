@@ -13,6 +13,7 @@
 pkg update --yes
 pkg install --yes \
     binutils-is-llvm \
+    binutils \
     clang \
     cmake \
     curl \
