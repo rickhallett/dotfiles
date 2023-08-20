@@ -42,4 +42,15 @@ setopt IGNORE_EOF
 # like: git comm-[tab]
 setopt COMPLETE_ALIASES
 
+# history settings from oh-my-zsh, adjusted
+HISTFILE="${HOME}/.zsh_history"
+HISTSIZE=1000000
+SAVEHIST=100000
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
+setopt SHARE_HISTORY
+
 # vim: set ai et sw=4 syntax=zsh :
