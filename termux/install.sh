@@ -18,6 +18,7 @@ pkg install --yes \
     clang \
     cmake \
     curl \
+    fd \
     fftw \
     flang \
     freetype \
