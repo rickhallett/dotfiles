@@ -19,7 +19,9 @@ pkg install --yes \
     cmake \
     curl \
     fftw \
+    flang \
     freetype \
+    fzf \
     git \
     jq \
     libandroid-execinfo \
@@ -41,7 +43,6 @@ pkg install --yes \
     vim \
     wget \
     which \
-    flang \
     zsh
 
 chsh -s zsh
