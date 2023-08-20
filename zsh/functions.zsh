@@ -6,25 +6,26 @@ function is_running_as () {
     [ "$(ps -p ${process_pid} -o comm=)" = "${process_name}" ]
 }
 
-function load_ssh_agent () {
-    if [ "$(uname -m)" = "aarch64" ]; then
-        return
-    fi
-    if [ -f ~/.agent.env ]
-    then
-        . ~/.agent.env > /dev/null
-        if ! is_running_as $SSH_AGENT_PID ssh-agent
+if [ "${ARCHITECTURE}" != "aarch64" ]; then
+    function load_ssh_agent () {
+        if [ -f ~/.agent.env ]
         then
-            echo "Stale agent file found. Spawning new agent… "
+            . ~/.agent.env > /dev/null
+            if ! is_running_as $SSH_AGENT_PID ssh-agent
+            then
+                echo "Stale agent file found. Spawning new agent… "
+                eval `ssh-agent | tee ~/.agent.env`
+                ssh-add
+            fi
+        else
+            echo "Starting ssh-agent"
             eval `ssh-agent | tee ~/.agent.env`
             ssh-add
         fi
-    else
-        echo "Starting ssh-agent"
-        eval `ssh-agent | tee ~/.agent.env`
-        ssh-add
-    fi
-}
+    }
+else
+    function load_ssh_agent() { }
+fi
 
 function load_dbus_daemon () {
     if ! which dbus-launch >/dev/null 2>&1; then

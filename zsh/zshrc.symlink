@@ -38,6 +38,8 @@ fi
 
 startup::log "Starting..."
 
+ARCHITECTURE="$(uname -m)"
+
 # If you come from bash you might have to change your $PATH.
   export PATH=$HOME/.local/bin:$PATH
 
@@ -94,6 +96,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+ZSH_PYENV_QUIET=true
 plugins=(git pyenv poetry git-flow-avh)
 startup::log "Set initial variables"
 

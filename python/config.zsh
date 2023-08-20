@@ -1,4 +1,4 @@
-if [ "$(uname -m)" != "aarch64" ]; then
+if [ "${ARCHITECTURE}" != "aarch64" ]; then
     export PIP_REQUIRE_VIRTUALENV=true
 fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
