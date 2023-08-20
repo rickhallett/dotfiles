@@ -14,7 +14,9 @@ if [ -z "${PYENV_ROOT}" ]; then
     export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
 fi
 
-eval "$(pyenv init -)"
+if which pyenv >/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
 
 function conda {
     if [[ -z "${CONDA_HOME}" ]]; then
