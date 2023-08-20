@@ -9,7 +9,7 @@ if [ -e "/usr/local/cuda" ]; then
     export PATH="${PATH}:/usr/local/cuda/bin"
 fi
 
-if [ -z "${PYENV_ROOT}" ]; then
+if [ -v PYENV_ROOT ]; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
 fi
