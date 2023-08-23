@@ -49,6 +49,9 @@ if [ -n "${_DEBUG_STARTUP}" ]; then
     zmodload -u zsh/zprof
 fi
 
+setopt LOCAL_OPTIONS # allow functions to have local options
+setopt LOCAL_TRAPS # allow functions to have local traps
+
 unset config_files
 unset start_time
 unset last_time
