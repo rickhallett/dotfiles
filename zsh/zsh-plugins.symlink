@@ -1,3 +1,6 @@
+@do if not android then dotfile zsh-linux
+@do if android then dotfile zsh-android
+
 @do if linux then dotfile clojure
 @do if linux then dotfile fonts
 @do dotfile git
@@ -10,7 +13,6 @@
 @do dotfile python
 @do if linux then dotfile tmux
 @do dotfile vim
-@do dotfile zsh
 
 @do git https://github.com/Tarrasch/zsh-colors
 @do git https://github.com/Tarrasch/zsh-functional

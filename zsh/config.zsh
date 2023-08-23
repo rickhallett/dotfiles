@@ -1,3 +1,9 @@
+# If you come from bash you might have to change your $PATH.
+  export PATH=$HOME/.local/bin:$PATH
+
+# You may need to manually set your language environment
+  export LANG=en_GB.UTF-8
+
 # zmv allows for mass renames. Use -n to test the rename. Example:
 # zmv '(*)-HDTV-WAKKA-WAKKA.(*)' '$1.$2'
 autoload -U zmv
@@ -8,14 +14,6 @@ export VISUAL=vim
 export EDITOR=vim
 export SVN_EDITOR=vim
 export GIT_EDITOR=vim
-
-if [ "${ARCHITECTURE}" != "aarch64" ]; then
-    export LC_ALL="en_GB.utf8"
-fi
-
-# https://wiki.ubuntu.com/DesktopExperienceTeam/ApplicationMenu
-# Disables global menu for everything.
-export UBUNTU_MENUPROXY=
 
 # Support multiple terms each of which must match exactly (i.e. not fuzzed).
 # Can fuzz a word by starting with '
@@ -52,5 +50,7 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
+
+source ~/.fzf.zsh
 
 # vim: set ai et sw=4 syntax=zsh :
