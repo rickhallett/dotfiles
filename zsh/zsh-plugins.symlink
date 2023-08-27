@@ -1,19 +1,19 @@
-@do dotfile clojure
-@do dotfile fonts
-@do dotfile git
-@do dotfile java
-@do dotfile javascript
-@do dotfile kitty
-@do dotfile logs
-@do dotfile plugin-manager
-@do dotfile postgres
-@do dotfile powerline
-@do dotfile puppet
-@do dotfile python
-@do dotfile script
-@do dotfile tmux
-@do dotfile vim
+@do if not android then dotfile zsh-linux
+@do if android then dotfile zsh-android
 @do dotfile zsh
+
+@do if linux then dotfile clojure
+@do if linux then dotfile fonts
+@do dotfile git
+@do if linux then dotfile java
+@do dotfile javascript
+@do if linux then dotfile kitty
+@do if linux then dotfile postgres
+@do if linux then dotfile powerline
+@do if linux then dotfile puppet
+@do dotfile python
+@do if linux then dotfile tmux
+@do dotfile vim
 
 @do git https://github.com/Tarrasch/zsh-colors
 @do git https://github.com/Tarrasch/zsh-functional
@@ -28,16 +28,17 @@
 
 @do if linux then pipx docker-compose
 @do if linux then pipx powerline-status
-@do if linux then pipx pipenv
-@do if linux then pipx poetry
 @do if linux then pipx cookiecutter
 @do if linux then pipx youtube-dl
+@do pipx pipenv
+@do pipx poetry
 
 @do if linux then github-release sharkdp/fd terms:x86_64,linux,musl
 @do if linux then github-release BurntSushi/ripgrep terms:linux,musl
 @do if linux then github-release ajeetdsouza/zoxide terms:x86_64,linux,musl exec:'eval "$(zoxide init zsh)"'
 @do if linux then github-release mislav/hub terms:amd64,linux
 @do if linux then if not ssh then github-release variadico/noti terms:linux
+@do if android then github-release ajeetdsouza/zoxide terms:aarch64,linux,musl exec:'eval "$(zoxide init zsh)"'
 
 @do git https://github.com/zsh-users/zsh-autosuggestions
 @do git https://github.com/zsh-users/zsh-history-substring-search

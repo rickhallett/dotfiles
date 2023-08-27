@@ -257,12 +257,13 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
-readonly CMD_MAX_EXEC_TIME=5
+# readonly CMD_MAX_EXEC_TIME=5
 prompt_time() {
   local stop=`date +%s`
   local start=${cmd_timestamp:-$stop}
   let local elapsed=$stop-$start
-  if [ $elapsed -gt $CMD_MAX_EXEC_TIME ]; then
+  # if [ $elapsed -gt $CMD_MAX_EXEC_TIME ]; then
+  if [ $elapsed -gt 5 ]; then
     prompt_segment black default "`pretty_print_time $elapsed`"
   fi
 }
