@@ -1,5 +1,5 @@
-@do if not android then dotfile zsh-linux
-@do if android then dotfile zsh-android
+@do if not android then dotfile zsh/linux
+@do if android then dotfile zsh/android
 @do dotfile zsh
 
 @do if linux then dotfile clojure
