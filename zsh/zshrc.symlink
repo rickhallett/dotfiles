@@ -44,6 +44,8 @@ export DOTFILES=$HOME/.dotfiles
 source "${DOTFILES}/zsh/plugins.sh"
 startup::log "Sourced plugins"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 if [ -n "${_DEBUG_STARTUP}" ]; then
     zprof
     zmodload -u zsh/zprof
