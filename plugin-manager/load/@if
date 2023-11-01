@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 #
 # This is a conditional executor which takes a few keywords.
 # The subsequent command will only be executed if every keyword test passes.

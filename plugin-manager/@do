@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 #
 # This is a resolver between @load and @install.
 # This takes a subcommand as the following terms, and then invokes it.

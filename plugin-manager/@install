@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 #
 # This is the entrypoint for the plugin manager installation.
 # This takes a subcommand as the following terms, and then invokes it.
