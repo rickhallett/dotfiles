@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 #
 # This loads a dependency from a local folder.
 # It will put the root folder on the path, and add any autocomplete folder to autocomplete.

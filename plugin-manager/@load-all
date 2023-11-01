@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 #
 # This loads the plugins by sourcing a file.
 # To generate the file the plugin definitions are loaded from ~/.zsh-plugins.

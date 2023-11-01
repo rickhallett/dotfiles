@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 #
 # This will execute the install.sh script of the dotfile directory if it is present.
 
