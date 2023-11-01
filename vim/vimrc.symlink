@@ -129,7 +129,6 @@ function s:RegisterPlugins() abort
     Plug 'https://github.com/vim-scripts/bnf.vim.git'
 
     Plug 'https://github.com/bronson/vim-visual-star-search.git'
-    Plug 'https://github.com/davidhalter/jedi-vim.git'
     if executable('task')
         let l:out = system('python -c "import tasklib"')
         unlet l:out
