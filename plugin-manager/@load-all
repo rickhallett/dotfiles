@@ -4,19 +4,6 @@
 # To generate the file the plugin definitions are loaded from ~/.zsh-plugins.
 # If the ~/.zsh-plugins file is newer then the definition file is regenerated.
 
-if [ ! -o errexit ]; then
-    setopt errexit
-    _CLEAR_ERREXIT=1
-fi
-if [ ! -o nounset ]; then
-    setopt nounset
-    _CLEAR_NOUNSET=1
-fi
-if [ ! -o pipefail ]; then
-    setopt pipefail
-    _CLEAR_PIPEFAIL=1
-fi
-
 readonly PLUGIN_FOLDER="${0:A:h}"
 
 readonly PLUGIN_FILE="${HOME}/.zsh-plugins"
