@@ -13,10 +13,13 @@ readonly STATUS_ERROR=2
 readonly LOCAL_BIN_FOLDER="${HOME}/.local/bin"
 readonly DOTFILES="$(dirname $(dirname \`readlink -f $0\`))"
 readonly LOGS_FOLDER="${DOTFILES}/logs"
+readonly PYENV_FOLDER="${HOME}/.pyenv"
 
 readonly STDOUT_LOGFILE="${LOGS_FOLDER}/install.log"
 readonly STDERR_LOGFILE="${LOGS_FOLDER}/error.log"
 readonly SKIP_LOGFILE="${LOGS_FOLDER}/skip.log"
+
+readonly PYTHON_VERSION="$(cat ${DOTFILES}/python/version)"
 
 info() {
     printf "  [ \033[00;34m..\033[0m ] $1\n"
@@ -50,6 +53,33 @@ make_local_bin() {
         export PATH="${LOCAL_BIN_FOLDER}:${PATH}"
     fi
 }
+prepare_pyenv () {
+    if ! is_pyenv_command_available; then
+        install_pyenv && pyenv_init_command
+    fi
+}
+
+prepare_pyenv_python () {
+    pyenv install --skip-existing "${PYTHON_VERSION}" && pyenv global "${PYTHON_VERSION}"
+}
+
+prepare_pipx () {
+    if ! is_pipx_command_available; then
+        make_local_bin && install_pip && install_pipx
+    fi
+}
+
+install_pyenv () {
+    if [ ! -e "${PYENV_FOLDER}" ]
+    then
+        git clone --quiet https://github.com/pyenv/pyenv.git "${PYENV_FOLDER}"
+    fi
+}
+
+pyenv_init_command () {
+    "${PYENV_FOLDER}/bin/pyenv" init zsh
+}
+
 
 install_pip() {
     PIP_COMMAND="$(which pip)"
@@ -104,3 +134,4 @@ get_url_to_file() {
         return 1
     fi
 }
+
