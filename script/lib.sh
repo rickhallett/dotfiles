@@ -11,7 +11,7 @@ readonly STATUS_SKIPPED=1
 readonly STATUS_ERROR=2
 
 readonly LOCAL_BIN_FOLDER="${HOME}/.local/bin"
-readonly DOTFILES="$(dirname $(dirname \`readlink -f $0\`))"
+readonly DOTFILES="`dirname \`dirname \\\`readlink -f $0\\\`\``"
 readonly LOGS_FOLDER="${DOTFILES}/logs"
 readonly PYENV_FOLDER="${HOME}/.pyenv"
 
